@@ -5,13 +5,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import arms.action.Action;
 import arms.vo.ActionForward;
+import arms.web.login.svc.LoginMainService;
 
 public class LoginMainAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		LoginService loginService = new LoginService(); 
+		LoginMainService loginMainService = new LoginMainService(); 
+		loginMainService.getLogin();
 		
 		
 		ActionForward forward = new ActionForward();
