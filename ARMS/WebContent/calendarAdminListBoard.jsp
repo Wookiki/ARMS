@@ -52,7 +52,7 @@ table {
 <body>
 	<c:if test="${pageInfo.count != 0}">
 	<section id = "listArea">
-		<h2>아파트일정 게시판 </h2>
+		<h2>아파트일정 게시판sdf </h2>
 		<table>
 		<tr id = "tr_title">
 		<td>글번호</td>
