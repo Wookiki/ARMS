@@ -1,4 +1,4 @@
-package db;
+package arms.db;
 
 import java.sql.*;
 

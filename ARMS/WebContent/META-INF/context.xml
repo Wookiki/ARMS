@@ -2,8 +2,8 @@
 <Context>
 	<Resource name = "jdbc/jsptest" auth = "Container"
 		type = "javax.sql.DataSource"
-		username = "java"
-		password = "java"
+		username = "ARMS"
+		password = "ARMS"
 		driverClassName = "oracle.jdbc.driver.OracleDriver"
 		factory = "org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
 		url = "jdbc:oracle:thin:@localhost:1521:xe"
