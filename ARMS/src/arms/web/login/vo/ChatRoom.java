@@ -1,4 +1,4 @@
-package arms.vo;
+package arms.web.login.vo;
 
 public class ChatRoom {
 	private String ch_topic;

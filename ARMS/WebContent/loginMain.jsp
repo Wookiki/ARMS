@@ -28,7 +28,7 @@
 <h1>아파트관리시스템</h1><br>
 <section id = "loginFormArea">
 	<h2>로그인</h2>
-	<form action="login" method = "post">
+	<form action="login.arms" method = "post">
 	<label for = "id">아이디 : </label>
 	<input type = "text" name = "id" id = "id"><br>
 	<label for = "passwd">비밀번호 : </label>

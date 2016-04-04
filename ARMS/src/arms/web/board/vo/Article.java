@@ -1,4 +1,4 @@
-package arms.vo;
+package arms.web.board.vo;
 
 import java.sql.Timestamp;
 
