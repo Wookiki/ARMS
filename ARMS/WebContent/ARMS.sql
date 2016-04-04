@@ -11,21 +11,30 @@ u_adminId	VARCHAR2(10) NULL
 )
 ALTER TABLE USERINFO RENAME COLUMN u_host TO u_hostId;
 ALTER TABLE USERINFO ADD (u_presidentId VARCHAR(10));
-create table ARTICLE(
-ar_articleName		VARCHAR2(20) 	NOT NULL,
-ar_num				NUMBER			NOT NULL,
-ar_writer			VARCHAR2(10)	NOT NULL,
-ar_subject			VARCHAR2(20)	NOT NULL,
-ar_date				DATE			NOT NULL,
-ar_readCount			NUMBER			NOT NULL,
-ar_content			VARCHAR2(200)	NOT NULL,
-ar_Ref				NUMBER			NOT NULL,
-ar_re_step			NUMBER			NOT NULL,
-ar_re_level			NUMBER			NOT NULL,
+
+INSERT INTO USERINFO VALUES ('Wookiki', '1111', '김영욱', '없음', 0, '010-2081-1597', 1, null, 'Wookiki', null)
+INSERT INTO USERINFO VALUES ('Rock', '1111', '박홍락', '101', 101, '010-4558-9543', 5, null, 'Wookiki', 'Rock' )
+INSERT INTO USERINFO VALUES ('Yong', '1111', '조용우', '101', 102, '010-9999-6380', 3, 'Yong', 'Wookiki', 'Rock' )
+
+SELECT * FROM USERINFO;
+
+create table BOARD(
+bo_boardName		VARCHAR2(20) 	NOT NULL,
+bo_num				NUMBER			NOT NULL,
+bo_writer			VARCHAR2(10)	NOT NULL,
+bo_subject			VARCHAR2(20)	NOT NULL,
+bo_date				DATE			NOT NULL,
+bo_readCount			NUMBER			NOT NULL,
+bo_content			VARCHAR2(200)	NOT NULL,
+bo_Ref				NUMBER			NOT NULL,
+bo_re_step			NUMBER			NOT NULL,
+bo_re_level			NUMBER			NOT NULL,
 u_id				VARCHAR2(20)	NOT NULL,
-CONSTRAINT PK_ar_articleName	PRIMARY KEY(ar_articleName),
+CONSTRAINT PK_bo_boardName	PRIMARY KEY(bo_boardName),
 CONSTRAINT FK_u_id	FOREIGN KEY(u_id) REFERENCES USERINFO(u_id)
 )
+
+
 
 CREATE SEQUENCE seq_ar_num
 START WITH 1

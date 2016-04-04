@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import arms.action.Action;
 import arms.vo.ActionForward;
 import arms.web.login.action.LoginMainAction;
+import arms.web.login.action.joinAction;
 
 /**
  * Servlet implementation class LoginServlet
@@ -44,6 +45,15 @@ public class LoginFrontController extends HttpServlet {
 		ActionForward forward = null;
 		if(command.equals("/login.arms")){
 			action = new LoginMainAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/join.arms")){
+			action = new joinAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

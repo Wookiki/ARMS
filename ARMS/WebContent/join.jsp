@@ -40,11 +40,7 @@
 <body>
 	<section id = "signMemberFormArea">
 		<h2>회원가입</h2>
-		<form action="" method = "POST">
-		<input type = "hidden" name="num" value=""/> 
-		<input type = "hidden" name="ref" value=""/> 
-		<input type = "hidden" name="re_step" value=""/> 
-		<input type = "hidden" name="re_level" value=""/> 
+		<form action="join.arms" method = "post">
 		<table>
 			<tr>
 			<td class = "td_left">
