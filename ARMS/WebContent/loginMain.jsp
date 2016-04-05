@@ -33,8 +33,10 @@
 	<input type = "text" name = "id" id = "id"><br>
 	<label for = "passwd">비밀번호 : </label>
 	<input type = "password" name = "passwd" id = "passwd"><br>
-	<input type = "submit" value="로그인" onclick ="location='login.arms'">
-    <a href = "join.jsp"><input type = "button" value="회원가입"></a>
+	<input type = "button" value="로그인" onclick ="location='login.arms'">
+	</form>
+	<form action="join.arms" method = "post">
+	<a href = "join.jsp"><input type = "button" value="회원가입"></a>
 	</form>
 </section>
 </body>
