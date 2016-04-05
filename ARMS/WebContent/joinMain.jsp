@@ -5,36 +5,32 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>bootstrap template</title>
-
-    <!-- Bootstrap -->
+    <title>회원가입</title>
+   
     <link href="joinBootstrap/bootstrap.min.css" rel="stylesheet">
-    <!-- font awesome -->
     <link rel="stylesheet" href="joinBootstrap/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
-    <!-- Custom style -->
     <link rel="stylesheet" href="joinBootstrap/style.css" media="screen" title="no title" charset="utf-8">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+   
   </head>
   <body>
 
 
       <article class="container">
+        
         <div class="page-header">
           <h1>입주민가입 </h1>
         </div>
+        
         <div class="col-md-6 col-md-offset-3">
-          <form action  = "join.arms" method = "post" role="form">
+          
+          <form action="join.arms" method="post" role="form">
+            
             <div class="form-group">
               <label for="id">ID</label>
               <input type="text" class="form-control" id="id" placeholder="ID" required>
             </div>
+            
             <div class="form-group">
               <label for="passwd">비밀번호</label>
               <input type="password" class="form-control" id="passwd" placeholder="비밀번호" required>
@@ -52,7 +48,7 @@
             
             <div class="form-group">
               <label for="ho">거주 호</label>
-              <input type="number" class="form-control" id="ho" placeholder="숫자만 입력해주세요." required>
+              <input type="text" class="form-control"  id="ho" placeholder="호" required>
             </div>
             
             <div class="form-group">
@@ -62,7 +58,7 @@
            
            <div class="form-group">
               <label for="car">보유차량수</label>
-              <input type="number" class="form-control" id="text" placeholder="숫자만 입력해 주세요." required>
+              <input type="text" class="form-control" id="car" placeholder="숫자만 입력해 주세요." required>
             </div>
            
             
@@ -73,7 +69,9 @@
               </button>
               </a>
             </div>
+          
           </form>
+        
         </div>
 
         

@@ -13,10 +13,14 @@ public class LoginMainAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		String u_id = request.getParameter("id");
+		UserInfo loginUser = null;
+		String id = request.getParameter("id");
+		String passwd = request.getParameter("passwd");
+		
 		
 		LoginMainService loginMainService = new LoginMainService();
-		UserInfo loginUser = loginMainService.getLoginUser(u_id);
+		loginUser = loginMainService.checkLogin(id, passwd);
+		
 		ActionForward forward = new ActionForward();
 		if(loginUser !=null){
 			forward = new ActionForward();

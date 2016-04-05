@@ -73,6 +73,7 @@
   <header>
   	아파트메인화면
   </header>
+  <form action="main.arms" method = "post">
   <section id = "main">
    <nav id = "main_left">
    <h1>게시판목록</h1>
@@ -100,7 +101,7 @@
   </section>
   <section id = footerRight>
   <a href="3.html"><input type="button" class="button" value="채팅방입장"></a>  </section>
-
+</form>
 
 </body>
 </html>

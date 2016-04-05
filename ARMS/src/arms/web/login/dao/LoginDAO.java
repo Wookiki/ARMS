@@ -23,45 +23,48 @@ public class LoginDAO {
 		// TODO Auto-generated method stub
 		this.con = con;
 	}
-	public UserInfo selectLoginUser(String u_id) {
+	
+	public UserInfo checkLogin(String id, String passwd) {
 		// TODO Auto-generated method stub
-		UserInfo loginUser = null;
 		PreparedStatement pstmt = null;
-		String sql = "SELECT * FROM USERINFO WHERE u_id=?";
 		ResultSet rs = null;
+		UserInfo loginInfo= null;
+		
 		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, u_id);
-			
-			rs= pstmt.executeQuery();
+			pstmt = con.prepareStatement("SELECT * FROM USERINFO WHERE u_id=? AND u_passwd=?");
+			pstmt.setString(1, id);
+			pstmt.setString(2, passwd);
+			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
-				loginUser = new UserInfo();
-				loginUser.setU_id(rs.getString("u_id"));
-				loginUser.setU_passwd(rs.getString("u_passwd"));
-				loginUser.setU_name(rs.getString("u_name"));
-				loginUser.setU_dong(rs.getString("u_dong"));
-				loginUser.setU_ho(rs.getInt("u_ho"));
-				loginUser.setU_tel(rs.getString("u_tel"));
-				loginUser.setU_car(rs.getInt("u_car"));
-				loginUser.setU_hostId(rs.getString("u_hostId"));
-				loginUser.setU_adminId(rs.getString("u_adminId"));
-				loginUser.setU_presidentId(rs.getString("u_presidentId"));
+				loginInfo.setU_adminId(rs.getString("adminId"));
+				loginInfo.setU_car(Integer.parseInt(rs.getString("car")));
+				loginInfo.setU_dong(rs.getString("dong"));
+				loginInfo.setU_ho(Integer.parseInt(rs.getString("ho")));
+				loginInfo.setU_hostId(rs.getString("hostId"));
+				loginInfo.setU_id(rs.getString("id"));
+				loginInfo.setU_name(rs.getString("name"));
+				loginInfo.setU_passwd(rs.getString("passwd"));
+				loginInfo.setU_presidentId(rs.getString("presidentId"));
+				loginInfo.setU_tel(rs.getString("tel"));
 				
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
 		}
-		return loginUser;
+		return loginInfo;
 	}
+	
 	public int inserUserInfo(UserInfo userInfo) {
 		// TODO Auto-generated method stub
 		int insertCount = 0;
 		PreparedStatement pstmt = null;
-		
+		String sql = "INSERT INTO USERINFO VALUES (?, ?, ?, ?, ? , ? ,?, 'Yong', 'Wookiki', 'Rock')";
 		try {
-			pstmt = con.prepareStatement("INSERT INTO USERINFO VALUES (?,?,?,?,?,?,?, null, 'Wookiki', 'Rock')");
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userInfo.getU_id());
 			pstmt.setString(2, userInfo.getU_passwd());
 			pstmt.setString(3, userInfo.getU_name());
@@ -77,6 +80,7 @@ public class LoginDAO {
 		}
 		return insertCount;
 	}
+	
 	
 	
 }

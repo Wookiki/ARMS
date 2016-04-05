@@ -17,21 +17,22 @@ public class JoinAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		UserInfo userInfo = new UserInfo();
-		String u_id = request.getParameter("id");
-		String u_passwd = request.getParameter("passwd");
-		String u_name = request.getParameter("name");
-		String u_dong = request.getParameter("dong");
-		int u_ho = Integer.parseInt(request.getParameter("ho")); 
-		String u_tel = request.getParameter("tel");
-		int u_car = Integer.parseInt(request.getParameter("car"));
+		userInfo.setU_id(request.getParameter("id"));
+		userInfo.setU_passwd(request.getParameter("passwd"));;
+		userInfo.setU_name(request.getParameter("name"));
+		userInfo.setU_dong(request.getParameter("dong"));
+		userInfo.setU_ho(Integer.parseInt(request.getParameter("ho")));
+		userInfo.setU_tel(request.getParameter("tel"));
+		userInfo.setU_car(Integer.parseInt(request.getParameter("car")));
 		
 		JoinService joinService = new JoinService();
 		boolean joinSuccess = joinService.joinUserInfo(userInfo);
 		
 		ActionForward forward = new ActionForward();
+		
 		if(joinSuccess){
 			forward.setRedirect(true);
-			forward.setUrl("login.arms");
+			forward.setUrl("loginMain.jsp");
 		}else{
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();

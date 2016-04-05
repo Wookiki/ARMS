@@ -36,7 +36,7 @@
              	
       </form>
       <form class="form-signin">
-      	<a href = "join.jsp">
+      	<a href = "joinMain.jsp">
       	<button class="btn btn-lg btn-primary btn-block" type="button">회원가입</button>
       	</a>
         
