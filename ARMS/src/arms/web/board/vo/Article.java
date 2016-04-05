@@ -3,75 +3,77 @@ package arms.web.board.vo;
 import java.sql.Timestamp;
 
 public class Article {
-	private String ar_writer;
-	private int ar_num;
-	private String ar_subject;
-	private Timestamp ar_date;
-	private int ar_readCount;
-	private String ar_content;
-	private String ar_articleName;
-	private int ar_Ref;
-	private int ar_re_step;
-	private int ar_re_level;
+	private int num;
+	private String writer;
+	private String subject;
+	private String content;
+	private String passwd;
+	private Timestamp writerDate;
+	private int readcount;
+	private int ref;
+	private int re_step;
+	private int re_level;
 	
-	public String getAr_writer() {
-		return ar_writer;
+	public int getNum() {
+		return num;
 	}
-	public void setAr_writer(String ar_writer) {
-		this.ar_writer = ar_writer;
+	public void setNum(int num) {
+		this.num = num;
 	}
-	public int getAr_num() {
-		return ar_num;
+	public String getWriter() {
+		return writer;
 	}
-	public void setAr_num(int ar_num) {
-		this.ar_num = ar_num;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
-	public String getAr_subject() {
-		return ar_subject;
+	public String getSubject() {
+		return subject;
 	}
-	public void setAr_subject(String ar_subject) {
-		this.ar_subject = ar_subject;
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
-	public Timestamp getAr_date() {
-		return ar_date;
+	public String getContent() {
+		return content;
 	}
-	public void setAr_date(Timestamp ar_date) {
-		this.ar_date = ar_date;
+	public void setContent(String content) {
+		this.content = content;
 	}
-	public int getAr_readCount() {
-		return ar_readCount;
+	public String getPasswd() {
+		return passwd;
 	}
-	public void setAr_readCount(int ar_readCount) {
-		this.ar_readCount = ar_readCount;
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
 	}
-	public String getAr_content() {
-		return ar_content;
+	public Timestamp getWriterDate() {
+		return writerDate;
 	}
-	public void setAr_content(String ar_content) {
-		this.ar_content = ar_content;
+	public void setWriterDate(Timestamp writerDate) {
+		this.writerDate = writerDate;
 	}
-	public String getAr_articleName() {
-		return ar_articleName;
+	public int getReadcount() {
+		return readcount;
 	}
-	public void setAr_articleName(String ar_articleName) {
-		this.ar_articleName = ar_articleName;
+	public void setReadcount(int readcount) {
+		this.readcount = readcount;
 	}
-	public int getAr_Ref() {
-		return ar_Ref;
+	public int getRef() {
+		return ref;
 	}
-	public void setAr_Ref(int ar_Ref) {
-		this.ar_Ref = ar_Ref;
+	public void setRef(int ref) {
+		this.ref = ref;
 	}
-	public int getAr_re_step() {
-		return ar_re_step;
+	public int getRe_step() {
+		return re_step;
 	}
-	public void setAr_re_step(int ar_re_step) {
-		this.ar_re_step = ar_re_step;
+	public void setRe_step(int re_step) {
+		this.re_step = re_step;
 	}
-	public int getAr_re_level() {
-		return ar_re_level;
+	public int getRe_level() {
+		return re_level;
 	}
-	public void setAr_re_level(int ar_re_level) {
-		this.ar_re_level = ar_re_level;
+	public void setRe_level(int re_level) {
+		this.re_level = re_level;
 	}
+	
+	
 }
