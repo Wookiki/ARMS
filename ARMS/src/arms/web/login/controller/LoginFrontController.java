@@ -15,7 +15,7 @@ import arms.web.login.action.joinAction;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/login")
+@WebServlet("*.arms")
 public class LoginFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -16,7 +16,7 @@ INSERT INTO USERINFO VALUES ('Wookiki', '1111', '김영욱', '없음', 0, '010-2081-1
 INSERT INTO USERINFO VALUES ('Rock', '1111', '박홍락', '101', 101, '010-4558-9543', 5, null, 'Wookiki', 'Rock' )
 INSERT INTO USERINFO VALUES ('Yong', '1111', '조용우', '101', 102, '010-9999-6380', 3, 'Yong', 'Wookiki', 'Rock' )
 
-SELECT * FROM USERINFO;
+SELECT * FROM USERINFO WHERE u_id = 'Wookiki';
 
 create table BOARD(
 bo_boardName		VARCHAR2(20) 	NOT NULL,
