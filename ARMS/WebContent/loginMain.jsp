@@ -1,43 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>아파트관리시스템</title>
+<!DOCTYPE html>
+<html lang="utf-8">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="bootstrap/favicon.ico">
 
-<style type="text/css">
-	h1{
-		text-align: center;
-	}
-	#loginFormArea{
-		width : 300px;
-		height : 200px;
-		margin : auto;
-		text-align: center;
-		border: 1px solid black;
-		border-radius: 10px; 
-	}
-	h2 {
-	text-align: center;
-	}
-</style>
+    <title>로그인화면</title>
 
-</head>
-<body>
-<h1>아파트관리시스템</h1><br>
-<section id = "loginFormArea">
-	<h2>로그인</h2>
-	<form action="login.arms" method = "post">
-	<label for = "id">아이디 : </label>
-	<input type = "text" name = "id" id = "id"><br>
-	<label for = "passwd">비밀번호 : </label>
-	<input type = "password" name = "passwd" id = "passwd"><br>
-	<input type = "button" value="로그인" onclick ="location='login.arms'">
-	</form>
-	<form action="join.arms" method = "post">
-	<a href = "join.jsp"><input type = "button" value="회원가입"></a>
-	</form>
-</section>
-</body>
+    <link href="bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="bootstrap/signin.css" rel="stylesheet">
+    <script src="bootstrap/ie-emulation-modes-warning.js"></script>
+
+    
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <form action="login.arms" method = "post" class="form-signin">
+        <h2 class="form-signin-heading">아파트 로그인</h2>
+        <label for="id" class="sr-only">ID</label>
+        <input type="text" id="id" class="form-control" placeholder="ID" >
+        <label for="passwd" class="sr-only">Password</label>
+        <input type="password" id="passwd" class="form-control" placeholder="Password" >
+        <br>
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
+             	
+      </form>
+      <form class="form-signin">
+      	<a href = "join.jsp">
+      	<button class="btn btn-lg btn-primary btn-block" type="button">회원가입</button>
+      	</a>
+        
+       
+      </form>
+      
+     	
+
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="bootstrap/ie10-viewport-bug-workaround.js"></script>
+  </body>
 </html>

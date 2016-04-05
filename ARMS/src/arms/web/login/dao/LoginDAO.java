@@ -3,6 +3,7 @@ package arms.web.login.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import static arms.db.jdbcUtil.*;
 
 import arms.web.login.vo.UserInfo;
 
@@ -53,6 +54,28 @@ public class LoginDAO {
 			e.printStackTrace();
 		}
 		return loginUser;
+	}
+	public int inserUserInfo(UserInfo userInfo) {
+		// TODO Auto-generated method stub
+		int insertCount = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = con.prepareStatement("INSERT INTO USERINFO VALUES (?,?,?,?,?,?,?, null, 'Wookiki', 'Rock')");
+			pstmt.setString(1, userInfo.getU_id());
+			pstmt.setString(2, userInfo.getU_passwd());
+			pstmt.setString(3, userInfo.getU_name());
+			pstmt.setString(4, userInfo.getU_dong());
+			pstmt.setInt(5, userInfo.getU_ho());
+			pstmt.setString(6, userInfo.getU_tel());
+			pstmt.setInt(7, userInfo.getU_car());
+			insertCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return insertCount;
 	}
 	
 	

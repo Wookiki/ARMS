@@ -19,18 +19,20 @@ INSERT INTO USERINFO VALUES ('Yong', '1111', 'Á¶¿ë¿ì', '101', 102, '010-9999-638
 SELECT * FROM USERINFO WHERE u_id = 'Wookiki';
 
 create table NOTICEBOARD(
-no_num				NUMBER			NOT NULL,
-no_writerId			VARCHAR2(10)	NOT NULL,
-no_subject			VARCHAR2(20)	NOT NULL,
-no_date				DATE			NOT NULL,
-no_readCount		NUMBER			NOT NULL,
-no_content			VARCHAR2(200)	NOT NULL,
-no_Ref				NUMBER			NOT NULL,
-no_re_step			NUMBER			NOT NULL,
-no_re_level			NUMBER			NOT NULL,
-CONSTRAINT PK_no_num	PRIMARY KEY(no_num),
-CONSTRAINT FK_no_writerId	FOREIGN KEY(no_writerId) REFERENCES USERINFO(u_id)
+num				NUMBER			NOT NULL,
+writerId			VARCHAR2(10)	NOT NULL,
+subject			VARCHAR2(20)	NOT NULL,
+wirteDate				DATE			NOT NULL,
+readCount		NUMBER			NOT NULL,
+content			VARCHAR2(200)	NOT NULL,
+Ref				NUMBER			NOT NULL,
+re_step			NUMBER			NOT NULL,
+re_level			NUMBER			NOT NULL,
+CONSTRAINT PK_no_num	PRIMARY KEY(num),
+CONSTRAINT FK_no_writerId	FOREIGN KEY(writerId) REFERENCES USERINFO(u_id)
 )
+
+alter table NOTICEBOARD ADD PASSWD NUMBER;
 
 CREATE SEQUENCE seq_no_num
 START WITH 1
@@ -38,18 +40,19 @@ INCREMENT BY 1
 NOMAXVALUE
 
 create table VOLUNTEERBOARD(
-vol_num				NUMBER			NOT NULL,
-vol_writerId			VARCHAR2(10)	NOT NULL,
-vol_subject			VARCHAR2(20)	NOT NULL,
-vol_date				DATE			NOT NULL,
-vol_readCount		NUMBER			NOT NULL,
-vol_content			VARCHAR2(200)	NOT NULL,
-vol_Ref				NUMBER			NOT NULL,
-vol_re_step			NUMBER			NOT NULL,
-vol_re_level			NUMBER			NOT NULL,
-CONSTRAINT PK_vol_num	PRIMARY KEY(vol_num),
-CONSTRAINT FK_vol_writerId	FOREIGN KEY(vol_writerId) REFERENCES USERINFO(u_id)
+num				NUMBER			NOT NULL,
+writerId			VARCHAR2(10)	NOT NULL,
+subject			VARCHAR2(20)	NOT NULL,
+writedate				DATE			NOT NULL,
+readCount		NUMBER			NOT NULL,
+content			VARCHAR2(200)	NOT NULL,
+Ref				NUMBER			NOT NULL,
+re_step			NUMBER			NOT NULL,
+re_level			NUMBER			NOT NULL,
+CONSTRAINT PK_vo_num	PRIMARY KEY(num),
+CONSTRAINT FK_vo_writerId	FOREIGN KEY(writerId) REFERENCES USERINFO(u_id)
 )
+alter table VOLUNTEERBOARD ADD PASSWD NUMBER;
 
 CREATE SEQUENCE seq_vol_num
 START WITH 1
@@ -57,18 +60,19 @@ INCREMENT BY 1
 NOMAXVALUE
 
 create table FACILITYBOARD(
-fa_num				NUMBER			NOT NULL,
-fa_writerId			VARCHAR2(10)	NOT NULL,
-fa_subject			VARCHAR2(20)	NOT NULL,
-fa_date				DATE			NOT NULL,
-fa_readCount		NUMBER			NOT NULL,
-fa_content			VARCHAR2(200)	NOT NULL,
-fa_Ref				NUMBER			NOT NULL,
-fa_re_step			NUMBER			NOT NULL,
-fa_re_level			NUMBER			NOT NULL,
-CONSTRAINT PK_fa_num	PRIMARY KEY(fa_num),
-CONSTRAINT FK_fa_writerId	FOREIGN KEY(fa_writerId) REFERENCES USERINFO(u_id)
+num				NUMBER			NOT NULL,
+writerId			VARCHAR2(10)	NOT NULL,
+subject			VARCHAR2(20)	NOT NULL,
+writedate				DATE			NOT NULL,
+readCount		NUMBER			NOT NULL,
+content			VARCHAR2(200)	NOT NULL,
+Ref				NUMBER			NOT NULL,
+re_step			NUMBER			NOT NULL,
+re_level			NUMBER			NOT NULL,
+CONSTRAINT PK_fa_num	PRIMARY KEY(num),
+CONSTRAINT FK_fa_writerId	FOREIGN KEY(writerId) REFERENCES USERINFO(u_id)
 )
+alter table FACILITYBOARD ADD PASSWD NUMBER;
 
 CREATE SEQUENCE seq_fa_num
 START WITH 1
@@ -76,38 +80,38 @@ INCREMENT BY 1
 NOMAXVALUE
 
 create table CALENDARBOARD(
-cal_num				NUMBER			NOT NULL,
-cal_writerId			VARCHAR2(10)	NOT NULL,
-cal_subject			VARCHAR2(20)	NOT NULL,
-cal_date				DATE			NOT NULL,
-cal_readCount		NUMBER			NOT NULL,
-cal_content			VARCHAR2(200)	NOT NULL,
-cal_Ref				NUMBER			NOT NULL,
-cal_re_step			NUMBER			NOT NULL,
-cal_re_level			NUMBER			NOT NULL,
-CONSTRAINT PK_cal_num	PRIMARY KEY(cal_num),
-CONSTRAINT FK_cal_writerId	FOREIGN KEY(cal_writerId) REFERENCES USERINFO(u_id)
+num				NUMBER			NOT NULL,
+writerId			VARCHAR2(10)	NOT NULL,
+subject			VARCHAR2(20)	NOT NULL,
+writedate				DATE			NOT NULL,
+readCount		NUMBER			NOT NULL,
+content			VARCHAR2(200)	NOT NULL,
+Ref				NUMBER			NOT NULL,
+re_step			NUMBER			NOT NULL,
+re_level			NUMBER			NOT NULL,
+CONSTRAINT PK_cal_num	PRIMARY KEY(num),
+CONSTRAINT FK_cal_writerId	FOREIGN KEY(writerId) REFERENCES USERINFO(u_id)
 )
-
+alter table CALENDARBOARD ADD PASSWD NUMBER;
 CREATE SEQUENCE seq_cal_num
 START WITH 1
 INCREMENT BY 1
 NOMAXVALUE
 
 create table SUGGESTIONBOARD(
-sug_num				NUMBER			NOT NULL,
-sug_writerId			VARCHAR2(10)	NOT NULL,
-sug_subject			VARCHAR2(20)	NOT NULL,
-sug_date				DATE			NOT NULL,
-sug_readCount		NUMBER			NOT NULL,
-sug_content			VARCHAR2(200)	NOT NULL,
-sug_Ref				NUMBER			NOT NULL,
-sug_re_step			NUMBER			NOT NULL,
-sug_re_level			NUMBER			NOT NULL,
-CONSTRAINT PK_sug_num	PRIMARY KEY(sug_num),
-CONSTRAINT FK_sug_writerId	FOREIGN KEY(sug_writerId) REFERENCES USERINFO(u_id)
+num				NUMBER			NOT NULL,
+writerId			VARCHAR2(10)	NOT NULL,
+subject			VARCHAR2(20)	NOT NULL,
+writeDate				DATE			NOT NULL,
+readCount		NUMBER			NOT NULL,
+content			VARCHAR2(200)	NOT NULL,
+Ref				NUMBER			NOT NULL,
+re_step			NUMBER			NOT NULL,
+re_level			NUMBER			NOT NULL,
+CONSTRAINT PK_sug_num	PRIMARY KEY(num),
+CONSTRAINT FK_sug_writerId	FOREIGN KEY(writerId) REFERENCES USERINFO(u_id)
 )
-
+alter table SUGGESTIONBOARD ADD PASSWD NUMBER;
 CREATE SEQUENCE seq_sug_num
 START WITH 1
 INCREMENT BY 1

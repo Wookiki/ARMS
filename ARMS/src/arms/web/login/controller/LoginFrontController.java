@@ -12,9 +12,6 @@ import arms.vo.ActionForward;
 import arms.web.login.action.LoginMainAction;
 import arms.web.login.action.JoinAction;
 
-/**
- * Servlet implementation class LoginServlet
- */
 @WebServlet("*.arms")
 public class LoginFrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
