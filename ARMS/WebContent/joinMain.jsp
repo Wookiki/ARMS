@@ -28,37 +28,37 @@
             
             <div class="form-group">
               <label for="id">ID</label>
-              <input type="text" class="form-control" id="id" placeholder="ID" required>
+              <input type="text" class="form-control" name = "id" id="id" placeholder="ID" required>
             </div>
             
             <div class="form-group">
               <label for="passwd">비밀번호</label>
-              <input type="password" class="form-control" id="passwd" placeholder="비밀번호" required>
+              <input type="password" class="form-control" name = "passwd" id="passwd" placeholder="비밀번호" required>
             </div>
             
             <div class="form-group">
               <label for="name">이름</label>
-              <input type="text" class="form-control" id="name" placeholder="이름을 입력해 주세요" required>
+              <input type="text" class="form-control" name = "name" id="name" placeholder="이름을 입력해 주세요" required>
             </div>
             
             <div class="form-group">
               <label for="dong">거주 동</label>
-              <input type="text" class="form-control" id="dong" placeholder="동" required>
+              <input type="text" class="form-control" name = "dong" id="dong" placeholder="동" required>
             </div>
             
             <div class="form-group">
               <label for="ho">거주 호</label>
-              <input type="text" class="form-control"  id="ho" placeholder="호" required>
+              <input type="number" class="form-control" min = "1"  name = "ho" id="ho" placeholder="호" required>
             </div>
             
             <div class="form-group">
               <label for="tel">전화번호</label>
-              <input type="tel" class="form-control" id="tel" placeholder="예)010-0000-0000 / 02-0000-0000" required>
+              <input type="tel" class="form-control" name = "tel" id="tel" placeholder="예)010-0000-0000 / 02-0000-0000" required>
             </div>
            
            <div class="form-group">
               <label for="car">보유차량수</label>
-              <input type="text" class="form-control" id="car" placeholder="숫자만 입력해 주세요." required>
+              <input type="number" class="form-control" min = "1" name = "car" id="car" placeholder="숫자만 입력해 주세요." required>
             </div>
            
             
