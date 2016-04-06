@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import arms.action.Action;
 import arms.vo.ActionForward;
 import arms.web.login.action.LoginMainAction;
+import arms.web.login.action.IdCheckAction;
 import arms.web.login.action.JoinAction;
 
 @WebServlet("*.arms")
@@ -51,6 +52,15 @@ public class LoginFrontController extends HttpServlet {
 		}
 		else if(command.equals("/join.arms")){
 			action = new JoinAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/idCheck.arms")){
+			action = new IdCheckAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

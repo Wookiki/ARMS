@@ -11,6 +11,14 @@
     <link rel="stylesheet" href="joinBootstrap/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="joinBootstrap/style.css" media="screen" title="no title" charset="utf-8">
 
+	<script>
+	function winOpen(){
+		//자바스크립트는 화면을 제어할 수 있는 수많은 내장 객체들을 제공하고, 각 내장객체들은
+		//속성과 메소드가 제공된다.
+		alert(document.forms[0].id.value);
+		window.open("idCheck.arms?id=" + document.forms[0].id.value,"window1","width=300,height=300");
+	}
+</script>
    
   </head>
   <body>
@@ -29,6 +37,9 @@
             <div class="form-group">
               <label for="id">ID</label>
               <input type="text" class="form-control" name = "id" id="id" placeholder="ID" required>
+            </div>  
+              <div class="form-group">
+              <input type = "button" class="btn btn-info" value = "아이디중복체크" onClick = "winOpen()" />
             </div>
             
             <div class="form-group">

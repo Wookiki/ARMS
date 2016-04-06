@@ -17,6 +17,7 @@
     <link href="bootstrap/signin.css" rel="stylesheet">
     <script src="bootstrap/ie-emulation-modes-warning.js"></script>
 
+	
     
   </head>
 
@@ -26,10 +27,12 @@
 
       <form action="login.arms" method = "post" class="form-signin">
         <h2 class="form-signin-heading">아파트 로그인</h2>
+        
         <label for="id" class="sr-only">ID</label>
-        <input type="text" id="id" class="form-control" placeholder="ID" >
+        <input type="text" id="id" name = "id" class="form-control" placeholder="ID" >
+       
         <label for="passwd" class="sr-only">Password</label>
-        <input type="password" id="passwd" class="form-control" placeholder="Password" >
+        <input type="password" id="passwd" name = "passwd" class="form-control" placeholder="Password" >
         <br>
         
         <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>

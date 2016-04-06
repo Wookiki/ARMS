@@ -37,6 +37,7 @@ public class LoginDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
+				loginInfo = new UserInfo();
 				loginInfo.setU_adminId(rs.getString("adminId"));
 				loginInfo.setU_car(Integer.parseInt(rs.getString("car")));
 				loginInfo.setU_dong(rs.getString("dong"));
@@ -47,7 +48,7 @@ public class LoginDAO {
 				loginInfo.setU_passwd(rs.getString("passwd"));
 				loginInfo.setU_presidentId(rs.getString("presidentId"));
 				loginInfo.setU_tel(rs.getString("tel"));
-				
+				rs = pstmt.executeQuery();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,7 +63,7 @@ public class LoginDAO {
 		// TODO Auto-generated method stub
 		int insertCount = 0;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO USERINFO VALUES (?, ?, ?, ?, ? , ? ,?, 'Yong', 'Wookiki', 'Rock')";
+		String sql = "INSERT INTO USERINFO VALUES (?, ?, ?, ?, ? , ? ,?, NULL, 'Wookiki', 'Rock')";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userInfo.getU_id());
@@ -79,6 +80,27 @@ public class LoginDAO {
 			close(pstmt);
 		}
 		return insertCount;
+	}
+	public int selectIdCount(String id) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int idCount = 0;
+		try {
+			pstmt = con.prepareStatement("SELECT COUNT(*) FROM USERINFO WHERE u_id = ?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				idCount = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return idCount;
 	}
 	
 	
