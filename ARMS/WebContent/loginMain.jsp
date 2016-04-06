@@ -25,8 +25,8 @@
 
     <div class="container">
 
-      <form action="login.arms" method = "post" class="form-signin">
-        <h2 class="form-signin-heading">아파트 로그인</h2>
+      <form class="form-signin">
+        <h2 class="form-signin-heading">아파트 관리 시스템</h2>
         
         <label for="id" class="sr-only">ID</label>
         <input type="text" id="id" name = "id" class="form-control" placeholder="ID" >
@@ -35,7 +35,10 @@
         <input type="password" id="passwd" name = "passwd" class="form-control" placeholder="Password" >
         <br>
         
+        <a href = "login.arms">
         <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
+        </a>
+        
              	
       </form>
       <form class="form-signin">

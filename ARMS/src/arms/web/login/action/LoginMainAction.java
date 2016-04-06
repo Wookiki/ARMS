@@ -17,24 +17,20 @@ public class LoginMainAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		UserInfo loginUser = null;
-		String id = request.getParameter("id");
-		String passwd = request.getParameter("passwd");
+		String id = request.getParameter("u_id");
+		String passwd = request.getParameter("u_passwd");
 		
 		
 		LoginMainService loginMainService = new LoginMainService();
 		loginUser = loginMainService.checkLogin(id, passwd);
-		
-		HttpSession session = request.getSession();
+		System.out.println(loginUser);
 		
 		
 		ActionForward forward = new ActionForward();
-			
+				
 		if(loginUser !=null){
-			session.setAttribute("loginUser", loginUser);
-			session.setAttribute("id", id);
-			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setUrl("main.jsp");
+			forward.setUrl("main.arms");
 		}else {
 	         response.setContentType("text/html;charset=UTF-8");
 	         PrintWriter out = response.getWriter();

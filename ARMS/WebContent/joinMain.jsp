@@ -32,7 +32,7 @@
         
         <div class="col-md-6 col-md-offset-3">
           
-          <form action="join.arms" method="post" role="form">
+          <form action="join.arms" method="POST" role="form" enctype="multipart/form-data">
             
             <div class="form-group">
               <label for="id">ID</label>

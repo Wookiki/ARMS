@@ -73,11 +73,11 @@
   <header>
   	아파트메인화면
   </header>
-  <form action="main.arms" method = "post">
+  <form action="main.ar" method = "POST">
   <section id = "main">
    <nav id = "main_left">
    <h1>게시판목록</h1>
-    <a href="3.html"><input type="button" class="button" value="공지사항게시판"></a><p>
+    <a href="noticeUserListBoard.jsp"><input type="button" class="button" value="공지사항게시판"></a><p>
     <a href="3.html"><input type="button" class="button" value="부대사항게시판"></a><p>
     <a href="3.html"><input type="button" class="button" value="봉사활동게시판"></a><p>
     <a href="3.html"><input type="button" class="button" value="아파트일정"></a><p>

@@ -48,7 +48,7 @@ public class LoginDAO {
 				loginInfo.setU_passwd(rs.getString("passwd"));
 				loginInfo.setU_presidentId(rs.getString("presidentId"));
 				loginInfo.setU_tel(rs.getString("tel"));
-				rs = pstmt.executeQuery();
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -101,6 +101,34 @@ public class LoginDAO {
 			close(pstmt);
 		}
 		return idCount;
+	}
+	public UserInfo checkLoginTest(String u_id, String u_passwd) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		UserInfo userInfoTest = null;
+		try {
+			pstmt = con.prepareStatement("SELECT * FROM USERINFO WHERE u_id = ? AND u_passwd = ?");
+			pstmt.setString(1, u_id);
+			pstmt.setString(2, u_passwd);
+			if(rs.next()){
+				userInfoTest = new UserInfo();
+				userInfoTest.setU_adminId(rs.getString("u_adminId"));
+				userInfoTest.setU_car(Integer.parseInt(rs.getString("car")));
+				userInfoTest.setU_dong(rs.getString("dong"));
+				userInfoTest.setU_ho(Integer.parseInt(rs.getString("ho")));
+				userInfoTest.setU_hostId(rs.getString("hostId"));
+				userInfoTest.setU_id(rs.getString("id"));
+				userInfoTest.setU_name(rs.getString("name"));
+				userInfoTest.setU_passwd(rs.getString("passwd"));
+				userInfoTest.setU_presidentId(rs.getString("presidentId"));
+				userInfoTest.setU_tel(rs.getString("tel"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return userInfoTest;
 	}
 	
 	
