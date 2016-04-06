@@ -1,5 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page import="arms.web.board.vo.PageInfo"%>
+<%@page import="arms.web.board.dao.BoardDAO"%>
+<%@page import="arms.web.board.vo.Article"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,61 +55,68 @@ table {
 }
 </style>
 </head>
+<%!
+	//한 페이지당 출력될 글의 갯수
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+%>
 
 <body>
-	<c:if test="${pageInfo.count != 0}">
+	<c:if test="${pageInfo.count != 0 }">
 	<section id = "listArea">
-		<h2>공지사항 게시판 </h2>
+		<h2>공지사항 게시판</h2>
+		<a href = "writeForm.jsp"> 글쓰기</a>
 		<table>
-		<tr id = "tr_title">
-		<td>글번호</td>
-		<td>글제목</td>
-		<td>작성자</td>
-		<td>작성일</td>
-		<td>조회수</td>
-		</tr>
-		<c:set var = "number" value = "${pageInfo.number}"></c:set>
-		<c:forEach var = "article" items = "${articleList}">
-		<tr>
-		<td class = "td_number">${number}</td>
-		<c:set var = "number" value = "${number -1}"></c:set>
-		<td class = "td_subject">
-		
-		<c:if test="${article.re_level > 0 }">
-		<c:forEach begin="1" end="${article.re_level }" step = "1">
-		&nbsp;&nbsp;&nbsp;
-		</c:forEach>
+			<tr id = "tr_title">
+			<td>글번호</td>
+			<td>글제목</td>
+			<td>작성자</td>
+			<td>작성일</td>
+			<td>조회수</td>
+			</tr>
+			<c:set var = "number" value = "${pageInfo.number}"></c:set>
+			<c:forEach var = "article" items = "${articleList}">
+			<tr>
+			<td class = "td_number">${number }</td>
+			<c:set var = "number" value = "${number-1}"></c:set>
+			<td class = "td_subject">
+			<c:if test = "${article.re_level > 0 }">			
+			<c:forEach begin="1" end = "${article.re_level}" step = "1">
+			&nbsp;&nbsp;&nbsp;								
+			</c:forEach>
 			re :
 			</c:if>
-		<a href = "boardContent.bo?num=${article.num}&pageNum=${pageInfo.currentPage}">${article.subject}</a>
-		</td>
-		<td class = "td_writer">${article.writer }</td>
-		<td class = "td_regdate">
-		<fmt:formatDate var = "reg_date" value = "${article.reg_date}" pattern = "yyyy.MM.dd"/>
-		<c:out value="${reg_date}"></c:out>
-		</td>
-		<td class = "td_readcount">${article.readcount}</td>
-		</tr>
-		</c:forEach>
+			<a href = "boardContent.bo?num=${article.num }&pageNum=${pageInfo.currentPage}">${article.subject }</a>
+			</td>
+			<td class = "td_writer">${article.writer }</td>
+			<td class = "td_regdate">
+			<fmt:formatDate var = "reg_date" value="${article.reg_date }" pattern = "yyyy.MM.dd"/>		
+			<c:out value = "${reg_date }"></c:out>
+			</td>	
+			<td class = "td_readcount">${article.readcount }</td>
+			</tr>	
+				
+			</c:forEach>
 		</table>
 		
-		<section id = pageArea>
-		<c:if test="${pageInfo.startPage > 10}">
-			<a href = "boardList.bo?pageNum=${pageInfo.startPage - 10}">[이전]</a>
+		<section id = "pageArea">
+		<c:if test="${pageInfo.startPage > 10}">			
+				<a href = "noticeBoardList.bo?pageNum=${pageInfo.startPage - 10 }">[이전]</a>
 		</c:if>
-		<c:forEach var = "i" begin = "${pageInfo.startPage}" end = "${pageInfo.endPage}">
-		<a href = "boardList.bo?pageNum=${i}">[${i}]</a>
-		</c:forEach>
-		<c:if test="${pageInfo.endPage < pageInfo.pageCount}">
-			<a href = "boardList.bo?pageNum=${pageInfo.startPage + 10}">[다음]</a>
-		</c:if><br>
-        <tr>
-        	<td colspan = "1" id = "commandCell">
-        	<input type="reset" value="메인으로" /></td>
-		</tr>
+			
+			<c:forEach var = "i" begin = "${pageInfo.startPage }" end = "${pageInfo.endPage}" >
+				<a href = "noticeBoardList.bo?pageNum=${i }">[${i }]</a>
+			</c:forEach>
+			<c:if test="${pageInfo.endPage < pageInfo.pageCount }">			
+				<a href = "noticeBoardList.bo?pageNum=${pageInfo.startPage + 10 }">[다음]</a>
+			</c:if>
 		</section>
-		
 	</section>
-	</c:if>
+	</c:if><br>
+	 <tr>
+        	<td colspan = "1" id = "commandCell">
+        	<input type="reset" value="메인으로" onclick = "location = 'main.jsp'"/></td>
+		</tr>
+
+
 </body>
 </html>
