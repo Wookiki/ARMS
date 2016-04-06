@@ -12,6 +12,8 @@ u_adminId	VARCHAR2(10) NULL
 ALTER TABLE USERINFO RENAME COLUMN u_host TO u_hostId;
 ALTER TABLE USERINFO ADD (u_presidentId VARCHAR(10));
 
+
+
 INSERT INTO USERINFO VALUES ('Wookiki', '1111', '김영욱', '없음', 0, '010-2081-1597', 1, null, 'Wookiki', null)
 INSERT INTO USERINFO VALUES ('Rock', '1111', '박홍락', '101', 101, '010-4558-9543', 5, null, 'Wookiki', 'Rock' )
 INSERT INTO USERINFO VALUES ('Yong', '1111', '조용우', '101', 102, '010-9999-6380', 3, 'Yong', 'Wookiki', 'Rock' )

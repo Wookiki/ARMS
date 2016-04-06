@@ -72,7 +72,7 @@ public class NoticeBoardListAction implements Action {
 		
 		request.setAttribute("pageInfo", pageInfo);
 		ActionForward forward = new ActionForward();
-		forward.setUrl("list.jsp");			
+		forward.setUrl("noticeUserListBoard.jsp");			
 		return forward;
 
 	}

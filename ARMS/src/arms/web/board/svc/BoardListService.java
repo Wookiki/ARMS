@@ -25,7 +25,7 @@ public class BoardListService {
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		boardDAO.setConnection(con);
 		ArrayList<Article> articleList = boardDAO.selectNoticeArticleList(startRow, pageSize);
-		System.out.println(articleList.get(0).getSubject());
+		
 		close(con);
 		return articleList;
 	}

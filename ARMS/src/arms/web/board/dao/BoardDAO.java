@@ -44,7 +44,7 @@ public class BoardDAO {
 						
 			//새로운 관련글 번호 구하기
 			//기존 값과 중복되지 않는 값으로
-			pstmt = con.prepareStatement("SELECT MAX(num) FROM board");
+			pstmt = con.prepareStatement("SELECT MAX(num) FROM noticeboard");
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
@@ -59,7 +59,7 @@ public class BoardDAO {
 			
 			if(num != 0){
 				//답글이면
-				sql = "UPDATE board SET re_step = re_step WHERE ref = ? AND re_step > ?";
+				sql = "UPDATE noticeboard SET re_step = re_step WHERE ref = ? AND re_step > ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1,ref);
 				pstmt.setInt(2,re_step);
@@ -74,15 +74,14 @@ public class BoardDAO {
 				re_level = 0;
 			}
 			
-			sql = "INSERT INTO board (num,writer,email,subject,passwd,reg_date"
+			sql = "INSERT INTO noticeboard (num,writer,subject,passwd,reg_date"
 					+",ref,re_step,re_level,content)"
-					+" VALUES(board_seq.nextval,?,?,?,?,?,?,?,?,?)";
+					+" VALUES(board_seq.nextval,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, article.getWriter());
-			pstmt.setString(2, article.getEmail());
+			pstmt.setString(1, article.getWriteID());
 			pstmt.setString(3, article.getSubject());
-			pstmt.setString(4, article.getPasswd());
-			pstmt.setTimestamp(5, article.getReg_date());
+			pstmt.setInt(4, article.getPasswd());
+			pstmt.setTimestamp(5, article.getWriteDate());
 			pstmt.setInt(6, ref);
 			pstmt.setInt(7, re_step);
 			pstmt.setInt(8, re_level);
@@ -154,8 +153,7 @@ public class BoardDAO {
 					article.setRef(rs.getInt("ref"));
 					article.setWriteDate(rs.getTimestamp("writedate"));
 					article.setSubject(rs.getString("subject"));
-					article.setWriteID(rs.getString("writeid"));
-					
+					article.setWriteID(rs.getString("writeid"));					
 					articleList.add(article); 
 					
 				}while(rs.next());
@@ -179,7 +177,7 @@ public class BoardDAO {
 		
 		try {
 			pstmt = con.prepareStatement
-					("UPDATE board SET readcount = readcount+1 WHERE num = ?");	
+					("UPDATE noticeboard SET readcount = readcount+1 WHERE num = ?");	
 			pstmt.setInt(1, board_Num);
 			int updateCount = pstmt.executeUpdate();
 			if(updateCount>0){
@@ -189,7 +187,7 @@ public class BoardDAO {
 				rollback(con);
 			}
 			pstmt = con.prepareStatement
-					("SELECT * FROM board WHERE num = ?");
+					("SELECT * FROM noticeboard WHERE num = ?");
 			pstmt.setInt(1, board_Num);
 			rs = pstmt.executeQuery();
 			
@@ -198,15 +196,14 @@ public class BoardDAO {
 					article = new Article();
 					article.setNum(rs.getInt("num"));
 					article.setContent(rs.getString("content"));
-					article.setEmail(rs.getString("email"));
-					article.setPasswd(rs.getString("passwd"));
+					article.setPasswd(rs.getInt("passwd"));
 					article.setRe_level(rs.getInt("re_level"));
 					article.setRe_step(rs.getInt("re_step"));
 					article.setReadcount(rs.getInt("readcount"));
 					article.setRef(rs.getInt("ref"));
-					article.setReg_date(rs.getTimestamp("reg_date"));
+					article.setWriteDate(rs.getTimestamp("writedate"));
 					article.setSubject(rs.getString("subject"));
-					article.setWriter(rs.getString("writer"));		
+					article.setWriteID(rs.getString("writeid"));		
 					
 				}		
 			
@@ -239,15 +236,14 @@ public class BoardDAO {
 					article = new Article();
 					article.setNum(rs.getInt("num"));
 					article.setContent(rs.getString("content"));
-					article.setEmail(rs.getString("email"));
-					article.setPasswd(rs.getString("passwd"));
+					article.setPasswd(rs.getInt("passwd"));
 					article.setRe_level(rs.getInt("re_level"));
 					article.setRe_step(rs.getInt("re_step"));
 					article.setReadcount(rs.getInt("readcount"));
 					article.setRef(rs.getInt("ref"));
-					article.setReg_date(rs.getTimestamp("reg_date"));
+					article.setWriteDate(rs.getTimestamp("writedate"));
 					article.setSubject(rs.getString("subject"));
-					article.setWriter(rs.getString("writer"));		
+					article.setWriteID(rs.getString("writeid"));		
 					
 				}		
 			
@@ -268,20 +264,19 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String dbPasswd = "";
+		int dbPasswd = 0;
 		String sql ="";
 		int updateCount = 0;
 		try {
-			pstmt = con.prepareStatement("SELECT passwd FROM board WHERE num = ?");
+			pstmt = con.prepareStatement("SELECT passwd FROM noticeboard WHERE num = ?");
 			pstmt.setInt(1,  article.getNum());
 			rs = pstmt.executeQuery();
 			if(rs.next()){
-				dbPasswd = rs.getString("passwd");
-				if(dbPasswd.equals(article.getPasswd())){
-					sql = "UPDATE board SET writer=?,email=?,subject=?,content=? WHERE num = ?";
+				dbPasswd = rs.getInt("passwd");
+				if(dbPasswd == article.getPasswd()){
+					sql = "UPDATE noticeboard SET writeid=?,subject=?,content=? WHERE num = ?";
 					pstmt = con.prepareStatement(sql);
-					pstmt.setString(1, article.getWriter());
-					pstmt.setString(2, article.getEmail());
+					pstmt.setString(1, article.getWriteID());
 					pstmt.setString(3, article.getSubject());
 					pstmt.setString(4, article.getContent());
 					pstmt.setInt(5, article.getNum());
@@ -307,20 +302,20 @@ public class BoardDAO {
 		return updateCount;
 	}
 	
-	public int deleteArticle(int num , String passwd){
+	public int deleteArticle(int num , int passwd){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String dbPasswd = "";
+		int dbPasswd = 0;
 		String sql ="";
 		int deleteCount = 0;
 		try {
-			pstmt = con.prepareStatement("SELECT passwd FROM board WHERE num = ?");
+			pstmt = con.prepareStatement("SELECT passwd FROM noticeboard WHERE num = ?");
 			pstmt.setInt(1,  num);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
-				dbPasswd = rs.getString("passwd");
-				if(dbPasswd.equals(passwd)){
+				dbPasswd = rs.getInt("passwd");
+				if(dbPasswd == passwd){
 					sql = "DELETE board WHERE num = ?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1, num);		
