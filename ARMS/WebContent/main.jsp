@@ -43,10 +43,11 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">나의정보보기</a>
+                        <a href="userInfoDetailView.jsp">나의정보보기</a>
                     </li>
                     <li>
-                    		<a href="#">로그아웃</a>
+						<a href="logout.arms">로그아웃</a>
+                    		
                     </li>
                     <li>
                         <a href="#">채팅방</a>

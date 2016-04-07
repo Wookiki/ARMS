@@ -83,6 +83,21 @@ public class LoginDAO {
 		return insertCount;
 	}
 	
+	public UserInfo getUserInfo(String id) {
+		// TODO Auto-generated method stub
+		UserInfo userInfoView = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = con.prepareStatement("SELECT * FROM USERINFO WHERE u_id = ?");
+			pstmt.setString(1, id);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+	
 	
 	
 }

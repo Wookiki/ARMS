@@ -19,8 +19,6 @@ public class LoginMainAction implements Action {
 		UserInfo loginUser = null;
 		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");
-		System.out.println(id);
-		System.out.println(passwd);
 		
 		
 		LoginMainService loginMainService = new LoginMainService();
@@ -28,7 +26,7 @@ public class LoginMainAction implements Action {
 		
 		HttpSession session = request.getSession();
 		
-		System.out.println(loginUser);
+		
 
 		ActionForward forward = new ActionForward();
 		if(loginUser !=null){

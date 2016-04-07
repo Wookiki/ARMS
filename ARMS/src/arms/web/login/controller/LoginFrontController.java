@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import arms.action.Action;
 import arms.vo.ActionForward;
 import arms.web.login.action.LoginMainAction;
+import arms.web.login.action.LogoutAction;
+import arms.web.login.action.userInfoDetailAction;
 import arms.web.login.action.JoinAction;
 
 @WebServlet("*.arms")
@@ -53,6 +55,24 @@ public class LoginFrontController extends HttpServlet {
 		}
 		else if(command.equals("/join.arms")){
 			action = new JoinAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/logout.arms")){
+			action = new LogoutAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/userInfoDetail.arms")){
+			action = new userInfoDetailAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
