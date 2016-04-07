@@ -27,18 +27,17 @@
       <form action="login.arms" method = "post" class="form-signin">
         <h2 class="form-signin-heading">아파트 로그인</h2>
         <label for="id" class="sr-only">ID</label>
-        <input type="text" id="id" class="form-control" placeholder="ID" >
+        <input type="text" name = "id" id="id" class="form-control" placeholder="ID" >
         <label for="passwd" class="sr-only">Password</label>
-        <input type="password" id="passwd" class="form-control" placeholder="Password" >
+        <input type="password" name = "passwd" id="passwd" class="form-control" placeholder="Password" >
         <br>
         
         <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
              	
       </form>
-      <form class="form-signin">
-      	<a href = "joinMain.jsp">
-      	<button class="btn btn-lg btn-primary btn-block" type="button">회원가입</button>
-      	</a>
+      <form class="form-signin">      
+      	<button class="btn btn-lg btn-primary btn-block" type="button" onclick = "location = 'joinMain.jsp'">회원가입</button>
+
         
        
       </form>

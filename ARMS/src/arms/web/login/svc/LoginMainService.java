@@ -13,10 +13,12 @@ public class LoginMainService {
 
 	public UserInfo checkLogin(String id, String passwd) {
 		// TODO Auto-generated method stub
-		Connection con = getConnection();
+		UserInfo loginUser = null;
+ 		Connection con = getConnection();
 		LoginDAO loginDAO = LoginDAO.getInstance();
 		loginDAO.setConnection(con);
-		UserInfo loginUser = loginDAO.checkLogin(id, passwd);
+		loginUser = loginDAO.checkLogin(id, passwd);
+		close(con);
 		return loginUser;
 	}
 

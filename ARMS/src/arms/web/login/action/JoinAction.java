@@ -27,6 +27,7 @@ public class JoinAction implements Action {
 		
 		JoinService joinService = new JoinService();
 		boolean joinSuccess = joinService.joinUserInfo(userInfo);
+		System.out.println(joinSuccess);
 		
 		ActionForward forward = new ActionForward();
 		
@@ -37,7 +38,7 @@ public class JoinAction implements Action {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('등록실패')");
+			out.println("alert('회원가입실패')");
 			out.println("history.back()");
 			out.println("</script>");
 		}

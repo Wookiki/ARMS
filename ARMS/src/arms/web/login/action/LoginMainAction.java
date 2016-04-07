@@ -1,7 +1,10 @@
 package arms.web.login.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import arms.action.Action;
 import arms.vo.ActionForward;
@@ -16,16 +19,30 @@ public class LoginMainAction implements Action {
 		UserInfo loginUser = null;
 		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");
+		System.out.println(id);
+		System.out.println(passwd);
 		
 		
 		LoginMainService loginMainService = new LoginMainService();
 		loginUser = loginMainService.checkLogin(id, passwd);
 		
+		HttpSession session = request.getSession();
+		
+		System.out.println(loginUser);
+
 		ActionForward forward = new ActionForward();
 		if(loginUser !=null){
-			forward = new ActionForward();
+			session.setAttribute("loginUser", loginUser);
+			session.setAttribute("id", id);
 			forward.setRedirect(true);
 			forward.setUrl("main.jsp");
+		}else{
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('로그인실패')");
+			out.println("history.back()");
+			out.println("</script>");
 		}
 		return forward;
 	}

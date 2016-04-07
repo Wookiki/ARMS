@@ -37,17 +37,19 @@ public class LoginDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
-				loginInfo.setU_adminId(rs.getString("adminId"));
-				loginInfo.setU_car(Integer.parseInt(rs.getString("car")));
-				loginInfo.setU_dong(rs.getString("dong"));
-				loginInfo.setU_ho(Integer.parseInt(rs.getString("ho")));
-				loginInfo.setU_hostId(rs.getString("hostId"));
-				loginInfo.setU_id(rs.getString("id"));
-				loginInfo.setU_name(rs.getString("name"));
-				loginInfo.setU_passwd(rs.getString("passwd"));
-				loginInfo.setU_presidentId(rs.getString("presidentId"));
-				loginInfo.setU_tel(rs.getString("tel"));
-				
+				loginInfo= new UserInfo();
+				loginInfo.setU_adminId(rs.getString("u_adminid"));
+				System.out.println(loginInfo.getU_adminId());
+				loginInfo.setU_car(Integer.parseInt(rs.getString("u_car")));
+				loginInfo.setU_dong(rs.getString("u_dong"));
+				loginInfo.setU_ho(Integer.parseInt(rs.getString("u_ho")));
+				loginInfo.setU_hostId(rs.getString("u_hostId"));
+				loginInfo.setU_id(rs.getString("u_id"));
+				loginInfo.setU_name(rs.getString("u_name"));
+				loginInfo.setU_passwd(rs.getString("u_passwd"));
+				loginInfo.setU_presidentId(rs.getString("u_presidentId"));
+				loginInfo.setU_tel(rs.getString("u_tel"));
+				System.out.println(loginInfo);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
