@@ -153,7 +153,7 @@ public class BoardDAO {
 					article.setRef(rs.getInt("ref"));
 					article.setWriteDate(rs.getTimestamp("writedate"));
 					article.setSubject(rs.getString("subject"));
-					article.setWriteID(rs.getString("writeid"));					
+					article.setWriteID(rs.getString("writerid"));					
 					articleList.add(article); 
 					
 				}while(rs.next());
@@ -203,7 +203,7 @@ public class BoardDAO {
 					article.setRef(rs.getInt("ref"));
 					article.setWriteDate(rs.getTimestamp("writedate"));
 					article.setSubject(rs.getString("subject"));
-					article.setWriteID(rs.getString("writeid"));		
+					article.setWriteID(rs.getString("writerid"));		
 					
 				}		
 			
@@ -243,7 +243,7 @@ public class BoardDAO {
 					article.setRef(rs.getInt("ref"));
 					article.setWriteDate(rs.getTimestamp("writedate"));
 					article.setSubject(rs.getString("subject"));
-					article.setWriteID(rs.getString("writeid"));		
+					article.setWriteID(rs.getString("writerid"));		
 					
 				}		
 			
@@ -274,7 +274,7 @@ public class BoardDAO {
 			if(rs.next()){
 				dbPasswd = rs.getInt("passwd");
 				if(dbPasswd == article.getPasswd()){
-					sql = "UPDATE noticeboard SET writeid=?,subject=?,content=? WHERE num = ?";
+					sql = "UPDATE noticeboard SET writerid=?,subject=?,content=? WHERE num = ?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, article.getWriteID());
 					pstmt.setString(3, article.getSubject());

@@ -46,7 +46,7 @@ public class BoardFrontController extends HttpServlet {
 		
 		Action action = null;
 		ActionForward forward = null;
-		if(command.equals("/noticeBoardList.bo")){
+		if(command.equals("/noticeUserListBoard.bo")){
 			action = new NoticeBoardListAction();
 			try {
 				forward = action.execute(request, response);

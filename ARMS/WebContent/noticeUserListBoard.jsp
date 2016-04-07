@@ -85,12 +85,12 @@ table {
 			</c:forEach>
 			re :
 			</c:if>
-			<a href = "boardContent.bo?num=${article.num }&pageNum=${pageInfo.currentPage}">${article.subject }</a>
+		<a href = "boardContent.bo?num=${article.num }&pageNum=${pageInfo.currentPage}">${article.subject }</a>
 			</td>
-			<td class = "td_writer">${article.writer }</td>
+			<td class = "td_writer">${article.writeID }</td>
 			<td class = "td_regdate">
-			<fmt:formatDate var = "reg_date" value="${article.reg_date }" pattern = "yyyy.MM.dd"/>		
-			<c:out value = "${reg_date }"></c:out>
+			<fmt:formatDate var = "writeDate" value="${article.writeDate }" pattern = "yyyy.MM.dd"/>		
+			<c:out value = "${writeDate }"></c:out>
 			</td>	
 			<td class = "td_readcount">${article.readcount }</td>
 			</tr>	
@@ -108,15 +108,16 @@ table {
 			</c:forEach>
 			<c:if test="${pageInfo.endPage < pageInfo.pageCount }">			
 				<a href = "noticeBoardList.bo?pageNum=${pageInfo.startPage + 10 }">[다음]</a>
-			</c:if>
-		</section>
-	</section>
-	</c:if><br>
-	 <tr>
+			</c:if><br>
+			<tr>
         	<td colspan = "1" id = "commandCell">
         	<input type="reset" value="메인으로" onclick = "location = 'main.jsp'"/></td>
 		</tr>
-
+			
+		</section>
+	</section>
+	</c:if>
+	 
 
 </body>
 </html>
