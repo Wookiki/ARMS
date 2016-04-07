@@ -114,7 +114,7 @@ table {
 	</c:if><br>
 	 <tr>
         	<td colspan = "1" id = "commandCell">
-        	<input type="reset" value="메인으로" onclick = "location = 'main.jsp'"/></td>
+        	<a href="main.jsp"><input type="button" value="메인으로" /></a></td>
 		</tr>
 
 

@@ -99,7 +99,7 @@ table {
         <tr>
         	<td colspan = "2" id = "commandCell">
         	<input type="submit"value="글작성" /> 
-			<input type="reset" value="메인으로" /></td>
+			<a href="main.jsp"><input type="button" value="메인으로" /></a></td>
 		</tr>
 		</section>
 		
