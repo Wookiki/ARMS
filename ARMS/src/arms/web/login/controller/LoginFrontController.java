@@ -13,7 +13,8 @@ import arms.action.Action;
 import arms.vo.ActionForward;
 import arms.web.login.action.LoginMainAction;
 import arms.web.login.action.LogoutAction;
-import arms.web.login.action.userInfoDetailAction;
+import arms.web.login.action.ModifyPasswdAction;
+import arms.web.login.action.ModifyUserInfoAction;
 import arms.web.login.action.JoinAction;
 
 @WebServlet("*.arms")
@@ -71,8 +72,8 @@ public class LoginFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/userInfoDetail.arms")){
-			action = new userInfoDetailAction();
+		else if(command.equals("/modifyUserInfo.arms")){
+			action = new ModifyUserInfoAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -80,6 +81,16 @@ public class LoginFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		else if(command.equals("/modifyPasswd.arms")){
+			action = new ModifyPasswdAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		
 		
 		if(forward != null){
 			if(forward.isRedirect()){

@@ -87,8 +87,7 @@
                     <div class="caption">
                         <h3>공지사항</h3>
                         	
-                        	<jsp:include page="noticeUserListBoard.jsp" flush = "true"></jsp:include> 
-                        	</section>
+                        	
                         <p>
                             <a href="noticeUserListBoard.jsp" class="btn btn-primary">게시판이동</a> 
                         </p>

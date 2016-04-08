@@ -87,8 +87,7 @@ public class LoginDAO {
 		// TODO Auto-generated method stub
 		UserInfo userInfoView = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
+
 		try {
 			pstmt = con.prepareStatement("SELECT * FROM USERINFO WHERE u_id = ?");
 			pstmt.setString(1, id);
@@ -96,6 +95,41 @@ public class LoginDAO {
 			// TODO: handle exception
 		}
 		return null;
+	}
+	public int selectUpdateUser(UserInfo userInfo) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int updateCount = 0 ;
+		try {
+			pstmt = con.prepareStatement("UPDATE USERINFO SET u_dong = ?, u_ho = ?, u_car = ? u_tel = ?");
+			pstmt.setString(1, userInfo.getU_dong());
+			pstmt.setInt(2, userInfo.getU_ho());
+			pstmt.setInt(3, userInfo.getU_car());
+			pstmt.setString(4, userInfo.getU_tel());
+			updateCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return updateCount;
+	}
+	public int modifyPasswd(UserInfo userInfo) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int updateCount =0;
+		try {
+			pstmt = con.prepareStatement("UPDATE USERINFO SET u_passwd = ?");
+			pstmt.setString(1, userInfo.getU_passwd());
+			updateCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return updateCount;
 	}
 	
 	

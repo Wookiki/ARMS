@@ -14,6 +14,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
     <style type="text/css">
+    
+    
         
     
     </style>
@@ -44,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">ARMS</a>
+                <a class="navbar-brand" href="main.jsp">ARMS</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             
@@ -61,31 +63,35 @@
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
         
-            <label>ID</label>
-            <input type="text" name = "id" class="input-xlarge" value = "${loginUser.getU_id() }">
-            <label>이름</label>
-            <input type="text" name = "name" class="input-xlarge" value = "${loginUser.getU_name() }">
+            <label>ID<br></label><h3>${loginUser.getU_id() }</h3> 
+            <label>이름</label><h3>${loginUser.getU_name() }</h3>
             <label>동</label>
-            <input type="text" name = "dong" class="input-xlarge" value = "${loginUser.getU_dong() }">
+            <input type="text" name="dong" class="input-xlarge" value = "${loginUser.getU_dong() }">
+            <!--
             <label>호</label>
-            <input type="text" name = "ho" class="input-xlarge" value = "${loginUser.getU_ho() }">
+            <input type="text"  name="ho" class="input-xlarge" value = "${loginUser.getU_ho() }">
             <label>보유차량수</label>
-			<input type="text" name = "car" class="input-xlarge" value = "${loginUser.getU_car() }">
+			<input type="text"  name="car" class="input-xlarge" value = "${loginUser.getU_car() }"> 
+              -->
+            
 			<label>전화번호</label>
-			<input type="text" name = "tel" class="input-xlarge" value = "${loginUser.getU_tel() }">            
+			<input type="text" name="tel" class="input-xlarge" value = "${loginUser.getU_tel() }">            
           	<div>
           		<a href="main.jsp"><button type = "button" class="btn btn-primary">메인으로</button></a>
-          		
-        	    <button type = "submit" class="btn btn-primary">수정하기</button>
+          		<a href="modifyUserInfo.arms"><button type = "submit" class="btn btn-primary">수정하기</button></a>
+                	    
         	</div>
        
       </div>
       <div class="tab-pane fade" id="profile">
     	<form id="tab2">
         	<label>새 비밀번호</label>
-        	<input type="password" class="input-xlarge">
+        	<input type="password" name = "passwd" class="input-xlarge">
         	<div>
-        	    <button type = "submit" class="btn btn-primary">수정하기</button>
+        	<a href = "modifyPasswd.arms"><button type = "submit" class="btn btn-primary">수정하기</button></a>
+        	
+        	
+        	    
         	</div>
     	</form>
       </div>
