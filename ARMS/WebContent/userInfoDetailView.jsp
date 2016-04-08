@@ -13,7 +13,14 @@
     <title>User profile in tabs - Bootsnipp.com</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
-    <style type="text/css">
+    <style>
+    .box{
+    width: 100px;
+    padding: 2px;
+    border: 2px ;
+    margin: 5px;
+    
+    }
     
     
         
@@ -62,18 +69,16 @@
     </ul>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
-        
-            <label>ID<br></label><h3>${loginUser.getU_id() }</h3> 
+        <div class = "box"></div>
+            <label>ID<br></label>
+            	<h3>${loginUser.getU_id() }</h3>
             <label>이름</label><h3>${loginUser.getU_name() }</h3>
             <label>동</label>
             <input type="text" name="dong" class="input-xlarge" value = "${loginUser.getU_dong() }">
-            <!--
             <label>호</label>
             <input type="text"  name="ho" class="input-xlarge" value = "${loginUser.getU_ho() }">
             <label>보유차량수</label>
 			<input type="text"  name="car" class="input-xlarge" value = "${loginUser.getU_car() }"> 
-              -->
-            
 			<label>전화번호</label>
 			<input type="text" name="tel" class="input-xlarge" value = "${loginUser.getU_tel() }">            
           	<div>
@@ -84,11 +89,13 @@
        
       </div>
       <div class="tab-pane fade" id="profile">
-    	<form id="tab2">
-        	<label>새 비밀번호</label>
-        	<input type="password" name = "passwd" class="input-xlarge">
+    	<form action = "modifyPasswd.arms" id="tab2">
+    	<label>ID<br></label>
+            	<input type="text" name = "id"class="input-xlarge" value = "${loginUser.getU_id() }">
+    	        	<label>새 비밀번호</label>
+        	<input type="password" name = "passwd" id = "passwd" class="input-xlarge">
         	<div>
-        	<a href = "modifyPasswd.arms"><button type = "submit" class="btn btn-primary">수정하기</button></a>
+        	<button type = "submit" class="btn btn-primary">수정하기</button>
         	
         	
         	    

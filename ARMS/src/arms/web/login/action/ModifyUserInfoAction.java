@@ -17,9 +17,9 @@ public class ModifyUserInfoAction implements Action {
 		// TODO Auto-generated method stub
 		UserInfo userInfo = new UserInfo();
 		userInfo.setU_dong(request.getParameter("dong"));
-		//userInfo.setU_ho(Integer.parseInt(request.getParameter("ho")));
+		userInfo.setU_ho(Integer.parseInt(request.getParameter("ho")));
 		userInfo.setU_tel(request.getParameter("tel"));
-		//userInfo.setU_car(Integer.parseInt(request.getParameter("car")));
+		userInfo.setU_car(Integer.parseInt(request.getParameter("car")));
 	
 		
 		ModifyUserInfoService modifyUserInfoService = new ModifyUserInfoService();

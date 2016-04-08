@@ -14,10 +14,10 @@ public class ModifyPasswdService {
 		LoginDAO loginDAO = LoginDAO.getInstance();
 		loginDAO.setConnection(con);
 		boolean modifyPasswdSuccess = false;
-		int modifyCount = loginDAO.modifyPasswd(userInfo);
-		if(modifyCount > 0){
-			commit(con);
+		int updateCount = loginDAO.modifyPasswd(userInfo);
+		if(updateCount > 0){
 			modifyPasswdSuccess = true;
+			commit(con);
 		}else{
 			rollback(con);
 		}

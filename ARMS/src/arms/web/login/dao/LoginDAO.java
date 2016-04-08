@@ -120,8 +120,9 @@ public class LoginDAO {
 		PreparedStatement pstmt = null;
 		int updateCount =0;
 		try {
-			pstmt = con.prepareStatement("UPDATE USERINFO SET u_passwd = ?");
+			pstmt = con.prepareStatement("UPDATE USERINFO SET u_passwd = ? WHERE u_id = ?");
 			pstmt.setString(1, userInfo.getU_passwd());
+			pstmt.setString(2, userInfo.getU_id());
 			updateCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
