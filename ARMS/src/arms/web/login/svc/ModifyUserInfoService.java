@@ -14,7 +14,6 @@ public class ModifyUserInfoService {
 		Connection con = getConnection();
 		LoginDAO loginDAO = LoginDAO.getInstance();
 		loginDAO.setConnection(con);
-		
 		boolean modifySuccess = false;
 		int updateCount = loginDAO.selectUpdateUser(userInfo);
 		if(updateCount > 0){

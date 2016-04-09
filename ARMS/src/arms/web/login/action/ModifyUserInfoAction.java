@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import arms.action.Action;
 import arms.vo.ActionForward;
@@ -16,17 +17,19 @@ public class ModifyUserInfoAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		UserInfo userInfo = new UserInfo();
+		userInfo.setU_id(request.getParameter("id"));
 		userInfo.setU_dong(request.getParameter("dong"));
 		userInfo.setU_ho(Integer.parseInt(request.getParameter("ho")));
 		userInfo.setU_tel(request.getParameter("tel"));
 		userInfo.setU_car(Integer.parseInt(request.getParameter("car")));
-	
+		HttpSession session = request.getSession();
 		
 		ModifyUserInfoService modifyUserInfoService = new ModifyUserInfoService();
 		
 		boolean modifySuccess = modifyUserInfoService.modifyUser(userInfo);
 		ActionForward forward = new ActionForward();
 		if(modifySuccess){
+			session.setAttribute("loginUser", userInfo);
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
@@ -34,7 +37,7 @@ public class ModifyUserInfoAction implements Action {
 			out.println("history.back();");
 			out.println("</script>");
 			forward.setRedirect(true);
-			forward.setUrl("UserInfoDetailView.jsp");
+			forward.setUrl("main.jsp");
 		}else{
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();

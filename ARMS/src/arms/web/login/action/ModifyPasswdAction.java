@@ -31,7 +31,7 @@ public class ModifyPasswdAction implements Action {
 			out.println("alert('수정성공')");
 			out.println("history.back();");
 			out.println("</script>");
-			forward.setUrl("UserInfoDetailView.jsp");
+			forward.setUrl("userInfoDetailView.jsp");
 		}else{
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();

@@ -70,8 +70,9 @@
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
         <div class = "box"></div>
+        	<form action = "modifyUserInfo.arms">
             <label>ID<br></label>
-            	<h3>${loginUser.getU_id() }</h3>
+            <input type="text" name="id" class="input-xlarge" value = "${loginUser.getU_id() }">
             <label>이름</label><h3>${loginUser.getU_name() }</h3>
             <label>동</label>
             <input type="text" name="dong" class="input-xlarge" value = "${loginUser.getU_dong() }">
@@ -83,8 +84,10 @@
 			<input type="text" name="tel" class="input-xlarge" value = "${loginUser.getU_tel() }">            
           	<div>
           		<a href="main.jsp"><button type = "button" class="btn btn-primary">메인으로</button></a>
-          		<a href="modifyUserInfo.arms"><button type = "submit" class="btn btn-primary">수정하기</button></a>
-                	    
+          		<button type = "submit" class="btn btn-primary">수정하기</button>
+            </div> 
+            </form>
+               	    
         	</div>
        
       </div>
@@ -96,9 +99,6 @@
         	<input type="password" name = "passwd" id = "passwd" class="input-xlarge">
         	<div>
         	<button type = "submit" class="btn btn-primary">수정하기</button>
-        	
-        	
-        	    
         	</div>
     	</form>
       </div>
