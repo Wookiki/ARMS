@@ -26,12 +26,9 @@ public class LoginMainAction implements Action {
 		
 		HttpSession session = request.getSession();
 		
-		
-
 		ActionForward forward = new ActionForward();
 		if(loginUser !=null){
 			session.setAttribute("loginUser", loginUser);
-			session.setAttribute("id", id);
 			forward.setRedirect(true);
 			forward.setUrl("main.jsp");
 		}else{

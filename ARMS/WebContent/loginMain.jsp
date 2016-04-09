@@ -1,3 +1,4 @@
+<%@page import="arms.web.login.vo.UserInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,7 +17,6 @@
     <link href="bootstrap/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <link href="bootstrap/signin.css" rel="stylesheet">
     <script src="bootstrap/ie-emulation-modes-warning.js"></script>
-
     
   </head>
 

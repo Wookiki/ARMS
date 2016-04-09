@@ -1,3 +1,4 @@
+<%@page import="arms.web.login.vo.UserInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,6 +12,7 @@
     <meta name="author" content="">
 
     <title>메인화면TEST</title>
+   <%UserInfo userInfo = (UserInfo) request.getAttribute("loginUser"); %>
 
     <link href="MainBootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="MainBootstrap/css/heroic-features.css" rel="stylesheet">
@@ -45,6 +47,17 @@
                     <li>
                         <a href="userInfoDetailView.jsp">나의정보보기</a>
                     </li>
+					<%
+					
+					if (userInfo!=null && userInfo.isAdminCheck()){
+					%>
+					<li>
+						<a href=""><input type ="button" value = "회원정보수정"></a>
+                    		
+                    </li>
+					<%
+					}
+					%>
                     <li>
 						<a href="logout.arms">로그아웃</a>
                     		

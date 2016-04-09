@@ -39,7 +39,6 @@ public class LoginDAO {
 			if(rs.next()){
 				loginInfo= new UserInfo();
 				loginInfo.setU_adminId(rs.getString("u_adminid"));
-				System.out.println(loginInfo.getU_adminId());
 				loginInfo.setU_car(Integer.parseInt(rs.getString("u_car")));
 				loginInfo.setU_dong(rs.getString("u_dong"));
 				loginInfo.setU_ho(Integer.parseInt(rs.getString("u_ho")));
@@ -49,7 +48,12 @@ public class LoginDAO {
 				loginInfo.setU_passwd(rs.getString("u_passwd"));
 				loginInfo.setU_presidentId(rs.getString("u_presidentId"));
 				loginInfo.setU_tel(rs.getString("u_tel"));
-				System.out.println(loginInfo);
+				if(rs.getString("adminCheck").equals("A")){
+					loginInfo.setAdminCheck(true);
+				} 
+				else {
+					loginInfo.setAdminCheck(false);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -11,6 +11,7 @@ public class UserInfo {
 	private String u_hostId;
 	private String u_presidentId;
 	private String u_adminId;
+	private boolean adminCheck;
 	
 	public String getU_id() {
 		return u_id;
@@ -71,5 +72,11 @@ public class UserInfo {
 	}
 	public void setU_adminId(String u_adminId) {
 		this.u_adminId = u_adminId;
+	}
+	public boolean isAdminCheck() {
+		return adminCheck;
+	}
+	public void setAdminCheck(boolean adminCheck) {
+		this.adminCheck = adminCheck;
 	}
 }
