@@ -1,10 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page import="arms.web.board.vo.PageInfo"%>
+<%@page import="arms.web.board.dao.BoardDAO"%>
+<%@page import="arms.web.board.vo.Article"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>봉사활동게시판목록화면</title>
+<title>부대사항게시판목록화면</title>
 <style>
 #listArea{
 	width: 610px;
@@ -52,8 +59,7 @@ table {
 <body>
 	<c:if test="${pageInfo.count != 0}">
 	<section id = "listArea">
-		<h2>봉사활동 게시판 </h2>
-		
+		<h2>부대사항 게시판 </h2>
 		<table>
 		<tr id = "tr_title">
 		<td>글번호</td>
@@ -70,14 +76,14 @@ table {
 		<td class = "td_subject">
 		
 		<c:if test="${article.re_level > 0 }">
-		<c:forEach begin="1" end="${article.re_level }" step = "1">
+		<c:forEach begin="1" end="${article.re_level}" step = "1">
 		&nbsp;&nbsp;&nbsp;
 		</c:forEach>
 			re :
 			</c:if>
-		<a href = "boardContent.bo?num=${article.num}&pageNum=${pageInfo.currentPage}">${article.subject}</a>
+		<a href = "facilityUserContentBoard.bo?num=${article.num}&pageNum=${pageInfo.currentPage}">${article.subject}</a>
 		</td>
-		<td class = "td_writer">${article.writeID }</td>
+		<td class = "td_writer">${article.writeID}</td>
 		<td class = "td_regdate">
 		<fmt:formatDate var = "reg_date" value = "${article.writeDate}" pattern = "yyyy.MM.dd"/>
 		<c:out value="${reg_date}"></c:out>
@@ -89,18 +95,17 @@ table {
 		
 		<section id = pageArea>
 		<c:if test="${pageInfo.startPage > 10}">
-			<a href = "boardList.bo?pageNum=${pageInfo.startPage - 10}">[이전]</a>
+			<a href = "facilityUserListBoard.bo?pageNum=${pageInfo.startPage - 10}">[이전]</a>
 		</c:if>
 		<c:forEach var = "i" begin = "${pageInfo.startPage}" end = "${pageInfo.endPage}">
-		<a href = "boardList.bo?pageNum=${i}">[${i}]</a>
+		<a href = "facilityUserListBoard.bo?pageNum=${i}">[${i}]</a>
 		</c:forEach>
 		<c:if test="${pageInfo.endPage < pageInfo.pageCount}">
-			<a href = "boardList.bo?pageNum=${pageInfo.startPage + 10}">[다음]</a>
+			<a href = "facilityUserListBoard.bo?pageNum=${pageInfo.startPage + 10}">[다음]</a>
 		</c:if><br>
         <tr>
         	<td colspan = "1" id = "commandCell">
         	<input type="reset" value="메인으로" onclick = "location = 'main.jsp'" /></td>
-        	<input type="reset" value="글쓰기" onclick = "location = 'facilityUserWriteBoardForm.jsp'" /></td>
 		</tr>
 		</section>
 		

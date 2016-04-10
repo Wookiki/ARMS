@@ -77,6 +77,7 @@ public class BoardFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+//		--------------------------목록보기--------------------------------------
 		else if(command.equals("/noticeUserContentBoard.bo")){
 			action = new NoticeUserContentBoardAction();
 			try {
@@ -95,6 +96,7 @@ public class BoardFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+//		-------------------------내용보기---------------------------------------
 		
 		
 		if(forward != null){
