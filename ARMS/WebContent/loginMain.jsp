@@ -36,7 +36,7 @@
              	
       </form>
       <form class="form-signin">      
-      	<button class="btn btn-lg btn-primary btn-block" type="button" onclick = "location = 'joinMain.jsp'">회원가입</button>
+      	<button class="btn btn-lg btn-primary btn-block" type="button" onclick = "location = 'joinMainTest.jsp'">회원가입</button>
 
         
        
