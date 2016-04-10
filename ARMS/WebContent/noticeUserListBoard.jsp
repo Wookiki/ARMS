@@ -63,8 +63,7 @@ table {
 <body>
 	<c:if test="${pageInfo.count != 0 }">
 	<section id = "listArea">
-		<h2>공지사항 게시판</h2>
-		<a href = "writeForm.jsp"> 글쓰기</a>
+		<h2>공지사항 게시판</h2>		
 		<table>
 			<tr id = "tr_title">
 			<td>글번호</td>
@@ -85,7 +84,7 @@ table {
 			</c:forEach>
 			re :
 			</c:if>
-		<a href = "boardContent.bo?num=${article.num }&pageNum=${pageInfo.currentPage}">${article.subject }</a>
+		<a href = "noticeUserContentBoard.bo?num=${article.num }&pageNum=${pageInfo.currentPage}">${article.subject }</a>
 			</td>
 			<td class = "td_writer">${article.writeID }</td>
 			<td class = "td_regdate">
@@ -109,7 +108,7 @@ table {
 			<c:if test="${pageInfo.endPage < pageInfo.pageCount }">			
 				<a href = "noticeBoardList.bo?pageNum=${pageInfo.startPage + 10 }">[다음]</a>
 			</c:if><br>
-			<tr>
+		<tr>
         	<td colspan = "1" id = "commandCell">
         	<input type="reset" value="메인으로" onclick = "location = 'main.jsp'"/></td>
 		</tr>

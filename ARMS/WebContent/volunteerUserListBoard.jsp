@@ -1,5 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page import="arms.web.board.vo.PageInfo"%>
+<%@page import="arms.web.board.dao.BoardDAO"%>
+<%@page import="arms.web.board.vo.Article"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,16 +76,16 @@ table {
 		<td class = "td_subject">
 		
 		<c:if test="${article.re_level > 0 }">
-		<c:forEach begin="1" end="${article.re_level }" step = "1">
+		<c:forEach begin="1" end="${article.re_level}" step = "1">
 		&nbsp;&nbsp;&nbsp;
 		</c:forEach>
 			re :
 			</c:if>
-		<a href = "boardContent.bo?num=${article.num}&pageNum=${pageInfo.currentPage}">${article.subject}</a>
+		<a href = "volunteerUserContentBoard.bo?num=${article.num}&pageNum=${pageInfo.currentPage}">${article.subject}</a>
 		</td>
-		<td class = "td_writer">${article.writer }</td>
+		<td class = "td_writer">${article.writeID}</td>
 		<td class = "td_regdate">
-		<fmt:formatDate var = "reg_date" value = "${article.reg_date}" pattern = "yyyy.MM.dd"/>
+		<fmt:formatDate var = "reg_date" value = "${article.writeDate}" pattern = "yyyy.MM.dd"/>
 		<c:out value="${reg_date}"></c:out>
 		</td>
 		<td class = "td_readcount">${article.readcount}</td>
@@ -88,17 +95,17 @@ table {
 		
 		<section id = pageArea>
 		<c:if test="${pageInfo.startPage > 10}">
-			<a href = "boardList.bo?pageNum=${pageInfo.startPage - 10}">[이전]</a>
+			<a href = "volunteerUserListBoard.bo?pageNum=${pageInfo.startPage - 10}">[이전]</a>
 		</c:if>
 		<c:forEach var = "i" begin = "${pageInfo.startPage}" end = "${pageInfo.endPage}">
-		<a href = "boardList.bo?pageNum=${i}">[${i}]</a>
+		<a href = "volunteerUserListBoard.bo?pageNum=${i}">[${i}]</a>
 		</c:forEach>
 		<c:if test="${pageInfo.endPage < pageInfo.pageCount}">
-			<a href = "boardList.bo?pageNum=${pageInfo.startPage + 10}">[다음]</a>
+			<a href = "volunteerUserListBoard.bo?pageNum=${pageInfo.startPage + 10}">[다음]</a>
 		</c:if><br>
         <tr>
         	<td colspan = "1" id = "commandCell">
-        	<input type="reset" value="메인으로" /></td>
+        	<input type="reset" value="메인으로" onclick = "location = 'main.jsp'" /></td>
 		</tr>
 		</section>
 		

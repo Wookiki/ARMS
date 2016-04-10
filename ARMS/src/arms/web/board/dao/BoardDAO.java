@@ -100,6 +100,8 @@ public class BoardDAO {
 		return insertCount;
 	}
 	
+//-------------------삽입구문-------------------------------------------------------------------
+	
 	
 	public int selectNoticeArticleCount(){
 		int articleCount = 0;
@@ -121,6 +123,50 @@ public class BoardDAO {
 		}
 		return articleCount;
 	}
+	public int selectVolunteerArticleCount(){
+		int articleCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = con.prepareStatement("SELECT COUNT(*) FROM volunteerboard");
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				articleCount = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		return articleCount;
+	}
+	public int selectFacilityArticleCount(){
+		int articleCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = con.prepareStatement("SELECT COUNT(*) FROM facilityboard");
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				articleCount = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		return articleCount;
+	}
+	
+	//-------------------글갯수구문-------------------------------------------------------------------
+	
+	
 	public ArrayList<Article> selectNoticeArticleList(int startRow,int pageSize){
 		ArrayList<Article> articleList = null;
 		PreparedStatement pstmt = null;
@@ -169,8 +215,104 @@ public class BoardDAO {
 		}
 		return articleList;
 	}
-	
-	public Article selectArticle(int board_Num){
+	public ArrayList<Article> selectVolunteerArticleList(int startRow,int pageSize){
+		ArrayList<Article> articleList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement
+					("SELECT list2.* FROM (SELECT rownum r, list1.*"
+							+ "FROM(SELECT * FROM volunteerboard ORDER BY ref DESC,re_step ASC) list1)"
+							+ "list2 WHERE r BETWEEN ? AND ?");
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, startRow+pageSize-1);
+			//rownum : SELECT 구분 실행 시 각 레코드의 번호를 부여해 줌.
+			//해당 페이지에 출력될 글 레코드들을 가져옴
+			//메인 쿼리 안에 "()" 로 묶여서 독립적으로 실행되는 쿼리를 서브쿼리라고 한다.
+			//서브쿼리 중 FROM 절에 오는 서브쿼리를 인라인뷰라고 한다.
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				Article article = null;
+				articleList = new ArrayList<Article>();
+				do{
+					article = new Article();
+					article.setNum(rs.getInt("num"));
+					article.setContent(rs.getString("content"));
+					article.setPasswd(rs.getInt("passwd"));
+					article.setRe_level(rs.getInt("re_level"));
+					article.setRe_step(rs.getInt("re_step"));
+					article.setReadcount(rs.getInt("readcount"));
+					article.setRef(rs.getInt("ref"));
+					article.setWriteDate(rs.getTimestamp("writedate"));
+					article.setSubject(rs.getString("subject"));
+					article.setWriteID(rs.getString("writerid"));					
+					articleList.add(article); 
+					
+				}while(rs.next());
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		return articleList;
+	}
+	public ArrayList<Article> selectFacilityArticleList(int startRow,int pageSize){
+		ArrayList<Article> articleList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement
+					("SELECT list2.* FROM (SELECT rownum r, list1.*"
+							+ "FROM(SELECT * FROM facilityboard ORDER BY ref DESC,re_step ASC) list1)"
+							+ "list2 WHERE r BETWEEN ? AND ?");
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, startRow+pageSize-1);
+			//rownum : SELECT 구분 실행 시 각 레코드의 번호를 부여해 줌.
+			//해당 페이지에 출력될 글 레코드들을 가져옴
+			//메인 쿼리 안에 "()" 로 묶여서 독립적으로 실행되는 쿼리를 서브쿼리라고 한다.
+			//서브쿼리 중 FROM 절에 오는 서브쿼리를 인라인뷰라고 한다.
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				Article article = null;
+				articleList = new ArrayList<Article>();
+				do{
+					article = new Article();
+					article.setNum(rs.getInt("num"));
+					article.setContent(rs.getString("content"));
+					article.setPasswd(rs.getInt("passwd"));
+					article.setRe_level(rs.getInt("re_level"));
+					article.setRe_step(rs.getInt("re_step"));
+					article.setReadcount(rs.getInt("readcount"));
+					article.setRef(rs.getInt("ref"));
+					article.setWriteDate(rs.getTimestamp("writedate"));
+					article.setSubject(rs.getString("subject"));
+					article.setWriteID(rs.getString("writerid"));					
+					articleList.add(article); 
+					
+				}while(rs.next());
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		return articleList;
+	}
+	//-------------------목록보기구문-------------------------------------------------------------------
+	public Article selectNoticeArticle(int board_Num){
 		Article article = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -219,7 +361,56 @@ public class BoardDAO {
 		return article;
 		
 	}
-	
+	public Article selectVolunteerArticle(int board_Num){
+		Article article = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = con.prepareStatement
+					("UPDATE volunteerboard SET readcount = readcount+1 WHERE num = ?");	
+			pstmt.setInt(1, board_Num);
+			int updateCount = pstmt.executeUpdate();
+			if(updateCount>0){
+				commit(con);
+			}
+			else{
+				rollback(con);
+			}
+			pstmt = con.prepareStatement
+					("SELECT * FROM volunteerboard WHERE num = ?");
+			pstmt.setInt(1, board_Num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				
+				article = new Article();
+				article.setNum(rs.getInt("num"));
+				article.setContent(rs.getString("content"));
+				article.setPasswd(rs.getInt("passwd"));
+				article.setRe_level(rs.getInt("re_level"));
+				article.setRe_step(rs.getInt("re_step"));
+				article.setReadcount(rs.getInt("readcount"));
+				article.setRef(rs.getInt("ref"));
+				article.setWriteDate(rs.getTimestamp("writedate"));
+				article.setSubject(rs.getString("subject"));
+				article.setWriteID(rs.getString("writerid"));		
+				
+			}		
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return article;
+		
+	}
+	//-------------------내용보기구문-------------------------------------------------------------------
 	public Article selectOldArticle(int num){
 		Article article = null;
 		PreparedStatement pstmt = null;
@@ -301,7 +492,7 @@ public class BoardDAO {
 		}		
 		return updateCount;
 	}
-	
+	//-------------------삽입구문-------------------------------------------------------------------
 	public int deleteArticle(int num , int passwd){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

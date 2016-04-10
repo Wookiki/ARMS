@@ -36,15 +36,15 @@
 	<h2>공지사항 게시판</h2>
 	<section id = "basicInfo">
 	제목 : ${conArticle.subject}
-	작성자 : ${conArticle.writer}
+	작성자 : ${conArticle.writeID}
 	조회수 : ${conArticle.readcount}
-	작성일 : ${conArticle.reg_date}
+	작성일 : ${conArticle.writeDate}
 	</section>
 	<section id = "contentInfo">
-	${conArticle.content }
+	${conArticle.content}
 	</section>
 	<section id = "commandArea">
-	<input type = "button" value = "목록보기" onclick="location.href='boardList.bo'">
+	<input type = "button" value = "목록보기" onclick="location.href='noticeUserListBoard.bo?pageNum=${pageNum }'">
 	</section>
 	</section>
 </body>

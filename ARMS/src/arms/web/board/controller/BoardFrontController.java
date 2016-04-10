@@ -11,7 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import arms.action.Action;
 import arms.vo.ActionForward;
+import arms.web.board.action.FacilityUserListBoardAction;
 import arms.web.board.action.NoticeBoardListAction;
+import arms.web.board.action.NoticeUserContentBoardAction;
+import arms.web.board.action.VolunteerUserContentBoardAction;
+import arms.web.board.action.VolunteerUserListBoardAction;
 
 /**
  * Servlet implementation class BoardFrontController
@@ -48,6 +52,42 @@ public class BoardFrontController extends HttpServlet {
 		ActionForward forward = null;
 		if(command.equals("/noticeUserListBoard.bo")){
 			action = new NoticeBoardListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/volunteerUserListBoard.bo")){
+			action = new VolunteerUserListBoardAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/facilityUserListBoard.bo")){
+			action = new FacilityUserListBoardAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/noticeUserContentBoard.bo")){
+			action = new NoticeUserContentBoardAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/volunteerUserContentBoard.bo")){
+			action = new VolunteerUserContentBoardAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

@@ -53,6 +53,7 @@ table {
 	<c:if test="${pageInfo.count != 0}">
 	<section id = "listArea">
 		<h2>봉사활동 게시판 </h2>
+		
 		<table>
 		<tr id = "tr_title">
 		<td>글번호</td>
@@ -76,9 +77,9 @@ table {
 			</c:if>
 		<a href = "boardContent.bo?num=${article.num}&pageNum=${pageInfo.currentPage}">${article.subject}</a>
 		</td>
-		<td class = "td_writer">${article.writer }</td>
+		<td class = "td_writer">${article.writeID }</td>
 		<td class = "td_regdate">
-		<fmt:formatDate var = "reg_date" value = "${article.reg_date}" pattern = "yyyy.MM.dd"/>
+		<fmt:formatDate var = "reg_date" value = "${article.writeDate}" pattern = "yyyy.MM.dd"/>
 		<c:out value="${reg_date}"></c:out>
 		</td>
 		<td class = "td_readcount">${article.readcount}</td>
@@ -98,7 +99,8 @@ table {
 		</c:if><br>
         <tr>
         	<td colspan = "1" id = "commandCell">
-        	<input type="reset" value="메인으로" /></td>
+        	<input type="reset" value="메인으로" onclick = "location = 'main.jsp'" /></td>
+        	<input type="reset" value="글쓰기" onclick = "location = 'facilityUserWriteBoardForm.jsp'" /></td>
 		</tr>
 		</section>
 		

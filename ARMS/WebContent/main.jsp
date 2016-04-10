@@ -79,9 +79,10 @@
    <nav id = "main_left">
    <h1>게시판목록</h1>
    <input type="button" class="button" value="공지사항게시판" onclick = "location = 'noticeUserListBoard.bo'"><p>
-   <input type="button" class="button" value="부대사항게시판"><p>
-   <input type="button" class="button" value="봉사활동게시판"><p>
+   <input type="button" class="button" value="부대사항게시판" onclick = "location = 'facilityUserListBoard.bo'"><p>
+   <input type="button" class="button" value="봉사활동게시판" onclick = "location = 'volunteerUserListBoard.bo'"><p>
    <input type="button" class="button" value="아파트일정"><p>
+   <input type="button" class="button" value="건의사항게시판"><p>
    
    </nav>   
    <section id = "main_right">

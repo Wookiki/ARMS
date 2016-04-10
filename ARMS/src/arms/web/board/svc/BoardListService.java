@@ -9,7 +9,7 @@ import arms.web.board.vo.Article;
 
 public class BoardListService {
 	
-	public int getArticleCount() {
+	public int getNoticeArticleCount() {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
@@ -19,7 +19,7 @@ public class BoardListService {
 		return articleCount;
 	}
 
-	public ArrayList<Article> getArticleList(int startRow, int pageSize) {
+	public ArrayList<Article> getNoticeArticleList(int startRow, int pageSize) {
 		// TODO Auto-generated method stub
 		Connection con = getConnection();
 		BoardDAO boardDAO = BoardDAO.getInstance();
@@ -29,4 +29,44 @@ public class BoardListService {
 		close(con);
 		return articleList;
 	}
+	
+	public int getVolunteerArticleCount() {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		int articleCount = boardDAO.selectVolunteerArticleCount();
+		close(con);
+		return articleCount;
+	}
+	public ArrayList<Article> getVolunteerArticleList(int startRow, int pageSize) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		ArrayList<Article> articleList = boardDAO.selectVolunteerArticleList(startRow, pageSize);		
+		close(con);
+		return articleList;
+	}
+	public int getFacilityArticleCount() {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		int articleCount = boardDAO.selectFacilityArticleCount();
+		close(con);
+		return articleCount;
+	}
+	public ArrayList<Article> getFacilityArticleList(int startRow, int pageSize) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		BoardDAO boardDAO = BoardDAO.getInstance();
+		boardDAO.setConnection(con);
+		ArrayList<Article> articleList = boardDAO.selectFacilityArticleList(startRow, pageSize);		
+		close(con);
+		return articleList;
+	}
+
+	
+
 }

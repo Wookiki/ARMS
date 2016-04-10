@@ -11,7 +11,7 @@ import arms.web.board.svc.BoardListService;
 import arms.web.board.vo.Article;
 import arms.web.board.vo.PageInfo;
 
-public class NoticeBoardListAction implements Action {
+public class FacilityUserListBoardAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -40,9 +40,9 @@ public class NoticeBoardListAction implements Action {
 		ArrayList<Article> articleList = null;
 		//해당 페이지에 출력될 글의 정보를 저장할 컬렉션 객체
 		
-		count = boardListService.getNoticeArticleCount();
+		count = boardListService.getFacilityArticleCount();
 		if(count>0){
-			articleList = boardListService.getNoticeArticleList(startRow,pageSize);
+			articleList = boardListService.getFacilityArticleList(startRow,pageSize);
 		}
 		number = count - (currentPage - 1) * pageSize;
 		//전체 글의 개수 : 134
@@ -72,8 +72,9 @@ public class NoticeBoardListAction implements Action {
 		
 		request.setAttribute("pageInfo", pageInfo);
 		ActionForward forward = new ActionForward();
-		forward.setUrl("noticeUserListBoard.jsp");			
+		forward.setUrl("facilityUserListBoard.jsp");			
 		return forward;
 
 	}
+
 }
