@@ -13,33 +13,25 @@
     <title>User profile in tabs - Bootsnipp.com</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
-    <style>
-    .box{
-    width: 100px;
-    padding: 2px;
-    border: 2px ;
-    margin: 5px;
-    
-    }
-    
-    
-        
+   <style type="text/css">
     
     </style>
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    
     <script type="text/javascript">
-        window.alert = function(){};
-        var defaultCSS = document.getElementById('bootstrap-css');
-        function changeCSS(css){
-            if(css) $('head > link').filter(':first').replaceWith('<link rel="stylesheet" href="'+ css +'" type="text/css" />'); 
-            else $('head > link').filter(':first').replaceWith(defaultCSS); 
-        }
-        $( document ).ready(function() {
-          var iframe_height = parseInt($('html').height()); 
-          window.parent.postMessage( iframe_height, 'http://bootsnipp.com');
-        });
-    </script>
+    window.alert = function(){};
+    var defaultCSS = document.getElementById('bootstrap-css');
+    function changeCSS(css){
+        if(css) $('head > link').filter(':first').replaceWith('<link rel="stylesheet" href="'+ css +'" type="text/css" />'); 
+        else $('head > link').filter(':first').replaceWith(defaultCSS); 
+    }
+    $( document ).ready(function() {
+      var iframe_height = parseInt($('html').height()); 
+      window.parent.postMessage( iframe_height, 'http://bootsnipp.com');
+    });
+   
+        </script>
 </head>
 <body>
 
@@ -63,17 +55,20 @@
     </nav>
     
 	<div class="well">
+    
     <ul class="nav nav-tabs">
       <li class="active"><a href="#home" data-toggle="tab">나의 정보</a></li>
       <li><a href="#profile" data-toggle="tab">비밀번호</a></li>
     </ul>
+   
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane active in" id="home">
         <div class = "box"></div>
         	<form action = "modifyUserInfo.arms">
             <label>ID<br></label>
-            <input type="text" name="id" class="input-xlarge" value = "${loginUser.getU_id() }">
-            <label>이름</label><h3>${loginUser.getU_name() }</h3>
+             <input class="input-xlarge" name ="id" type="text" value ="${loginUser.getU_id() }">
+            <label>이름</label>
+            <input class="input-xlarge" name ="name" type="text" value="${loginUser.getU_name() }" disabled>
             <label>동</label>
             <input type="text" name="dong" class="input-xlarge" value = "${loginUser.getU_dong() }">
             <label>호</label>
@@ -82,6 +77,7 @@
 			<input type="text"  name="car" class="input-xlarge" value = "${loginUser.getU_car() }"> 
 			<label>전화번호</label>
 			<input type="text" name="tel" class="input-xlarge" value = "${loginUser.getU_tel() }">            
+          	
           	<div>
           		<a href="main.jsp"><button type = "button" class="btn btn-primary">메인으로</button></a>
           		<button type = "submit" class="btn btn-primary">수정하기</button>
@@ -89,12 +85,12 @@
             </form>
                	    
         	</div>
-       
-      </div>
+
+   
       <div class="tab-pane fade" id="profile">
-    	<form action = "modifyPasswd.arms" id="tab2">
+    	<form action="modifyPasswd.arms" id="tab2">
     	<label>ID<br></label>
-            	<input type="text" name = "id"class="input-xlarge" value = "${loginUser.getU_id() }">
+            	<input type="text" name = "id" class="input-xlarge" value = "${loginUser.getU_id() }">
     	        	<label>새 비밀번호</label>
         	<input type="password" name = "passwd" id = "passwd" class="input-xlarge">
         	<div>
@@ -102,6 +98,7 @@
         	</div>
     	</form>
       </div>
+  
   </div>
 	<script type="text/javascript">
 	

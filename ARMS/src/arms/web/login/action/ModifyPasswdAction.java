@@ -18,6 +18,7 @@ public class ModifyPasswdAction implements Action {
 		request.setCharacterEncoding("UTF-8");
 		UserInfo userInfo = new UserInfo();
 		userInfo.setU_id(request.getParameter("id"));
+		System.out.println(request.getParameter("passwd"));
 		userInfo.setU_passwd(request.getParameter("passwd"));
 		
 		ModifyPasswdService modifyPasswdService = new ModifyPasswdService();

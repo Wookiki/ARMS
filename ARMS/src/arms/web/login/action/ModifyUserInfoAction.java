@@ -29,15 +29,15 @@ public class ModifyUserInfoAction implements Action {
 		boolean modifySuccess = modifyUserInfoService.modifyUser(userInfo);
 		ActionForward forward = new ActionForward();
 		if(modifySuccess){
-			session.setAttribute("loginUser", userInfo);
+			
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('수정성공')");
-			out.println("history.back();");
 			out.println("</script>");
+			session.setAttribute("loginUser", userInfo);
 			forward.setRedirect(true);
-			forward.setUrl("main.jsp");
+			forward.setUrl("userInfoDetailView.jsp");
 		}else{
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
