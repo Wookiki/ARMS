@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<html lang="UTF-8">
+<html >
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,28 +15,27 @@
 		//자바스크립트는 화면을 제어할 수 있는 수많은 내장 객체들을 제공하고, 각 내장객체들은
 		//속성과 메소드가 제공된다.
 		alert(document.forms[0].id.value);
-		window.open("idCheck.arms?id=" + document.forms[0].id.value,"window1","width=300,height=300");
+		window.open("idCheck.arms?id=" + document.forms[0].id.value,"window1","width=600,height=200");
 	}
 </script>
    
   </head>
   <body>
-
-
+	
       <article class="container">
         
         <div class="page-header">
           <h1>입주민가입 </h1>
         </div>
-        
+       
         <div class="col-md-6 col-md-offset-3">
           
-          <form action="join.arms" method="post" role="form">
+          <form action="join.arms" method="post" name = "regist" role="form">
             
             <div class="form-group">
               <label for="id">ID</label>
               <input type="text" class="form-control" name = "id" id="id" placeholder="ID" required><br>
-              <button type="button" class="btn btn-info" onClick = "winOpen()">ID중복확인<i class="fa fa-check spaceLeft"></i></button>
+			<input type = "button" class="btn btn-info" value = "ID중복체크" onClick = "winOpen()" />
             </div>
             
             <div class="form-group">

@@ -12,7 +12,7 @@
 <style>
 	section{
 		margin : auto;
-		width : 200px;
+		width : 500px;
 		border : 1px solid red;
 	}
 	h2{
@@ -34,10 +34,9 @@
 if(idExists){
 %>
 <section>
-<h2><%=id %> 아이디가 이미 존재합니다.</h2>
+<h2><%=id %> 는 이미 존재합니다.</h2>
 <form action="idCheck.arms?id=">
-   아이디 : <input type = "text" name = "id" id = "id"/><br>
-   <input type = "submit" value = "아이디중복체크"/>
+   아이디 : <input type = "text" name = "id" id = "id"/> <input type = "submit" value = "아이디중복체크"/>
 </form>
 </section>
 <%
@@ -45,7 +44,7 @@ if(idExists){
 else{
 %>
 <section>
-	<h2><%=id %> 아이디는 사용 가능한 아이디 입니다.</h2>
+	<h2><%=id %> 는 사용 가능한 ID입니다.</h2>
 	<a href = "javascript:winClose()">닫기</a>
 </section>
 
@@ -54,6 +53,10 @@ else{
 %>
 </body>
 </html>
+
+
+
+
 
 
 

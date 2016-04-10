@@ -15,6 +15,7 @@ import arms.web.login.action.LoginMainAction;
 import arms.web.login.action.LogoutAction;
 import arms.web.login.action.ModifyPasswdAction;
 import arms.web.login.action.ModifyUserInfoAction;
+import arms.web.login.action.IdCheckAction;
 import arms.web.login.action.JoinAction;
 
 @WebServlet("*.arms")
@@ -83,6 +84,15 @@ public class LoginFrontController extends HttpServlet {
 		}
 		else if(command.equals("/modifyPasswd.arms")){
 			action = new ModifyPasswdAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/idCheck.arms")){
+			action = new IdCheckAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

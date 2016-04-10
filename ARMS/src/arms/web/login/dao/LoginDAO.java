@@ -137,6 +137,27 @@ public class LoginDAO {
 		}
 		return updateCount;
 	}
+	public int selectIdCount(String id) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int idCount = 0;
+		try {
+			pstmt = con.prepareStatement("SELECT COUNT(*) FROM USERINFO WHERE u_id = ?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				idCount = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return idCount;
+	}
 	
 	
 	

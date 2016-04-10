@@ -34,10 +34,12 @@ CONSTRAINT FK_no_writerId	FOREIGN KEY(writerId) REFERENCES USERINFO(u_id)
 
 alter table NOTICEBOARD ADD PASSWD NUMBER;
 
-CREATE SEQUENCE seq_no_num
+CREATE SEQUENCE seq_notice
 START WITH 1
 INCREMENT BY 1
 NOMAXVALUE
+
+drop sequence seq_no_num;
 
 create table VOLUNTEERBOARD(
 num				NUMBER			NOT NULL,
@@ -54,10 +56,12 @@ CONSTRAINT FK_vo_writerId	FOREIGN KEY(writerId) REFERENCES USERINFO(u_id)
 )
 alter table VOLUNTEERBOARD ADD PASSWD NUMBER;
 
-CREATE SEQUENCE seq_vol_num
+CREATE SEQUENCE seq_volunteer
 START WITH 1
 INCREMENT BY 1
 NOMAXVALUE
+
+drop sequence seq_vol_num;
 
 create table FACILITYBOARD(
 num				NUMBER			NOT NULL,
@@ -74,10 +78,12 @@ CONSTRAINT FK_fa_writerId	FOREIGN KEY(writerId) REFERENCES USERINFO(u_id)
 )
 alter table FACILITYBOARD ADD PASSWD NUMBER;
 
-CREATE SEQUENCE seq_fa_num
+CREATE SEQUENCE seq_facility
 START WITH 1
 INCREMENT BY 1
 NOMAXVALUE
+
+drop sequence seq_fa_num;
 
 create table CALENDARBOARD(
 num				NUMBER			NOT NULL,
@@ -93,10 +99,13 @@ CONSTRAINT PK_cal_num	PRIMARY KEY(num),
 CONSTRAINT FK_cal_writerId	FOREIGN KEY(writerId) REFERENCES USERINFO(u_id)
 )
 alter table CALENDARBOARD ADD PASSWD NUMBER;
-CREATE SEQUENCE seq_cal_num
+
+CREATE SEQUENCE seq_calendar
 START WITH 1
 INCREMENT BY 1
 NOMAXVALUE
+drop sequence seq_cal_num;
+
 
 create table SUGGESTIONBOARD(
 num				NUMBER			NOT NULL,
@@ -112,10 +121,12 @@ CONSTRAINT PK_sug_num	PRIMARY KEY(num),
 CONSTRAINT FK_sug_writerId	FOREIGN KEY(writerId) REFERENCES USERINFO(u_id)
 )
 alter table SUGGESTIONBOARD ADD PASSWD NUMBER;
-CREATE SEQUENCE seq_sug_num
+CREATE SEQUENCE seq_suggestion
 START WITH 1
 INCREMENT BY 1
 NOMAXVALUE
+
+drop sequence seq_sug_num;
 
 
 create table CHATROOM(
