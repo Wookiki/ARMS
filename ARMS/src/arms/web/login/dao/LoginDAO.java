@@ -65,7 +65,7 @@ public class LoginDAO {
 		// TODO Auto-generated method stub
 		int insertCount = 0;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO USERINFO VALUES (?, ?, ?, ?, ? , ? ,?, 'Yong', 'Wookiki', 'Rock')";
+		String sql = "INSERT INTO USERINFO VALUES (?, ?, ?, ?, ? , ? ,?, NULL, NULL, NULL)";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userInfo.getU_id());
@@ -161,23 +161,21 @@ public class LoginDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = con.prepareStatement("SELECT u_id, u_name, u_dong, u_ho, u_tel, u_car FROM USERINFO");
+			pstmt = con.prepareStatement("SELECT * FROM USERINFO WHERE u_adminId is null ORDER BY u_dong ");
+			//_id, u_name, u_dong, u_ho, u_tel, u_car
 			rs = pstmt.executeQuery();
 			if(rs.next()){
 				UserInfo userInfo = null;
 				residentList = new ArrayList<UserInfo>();
 				do{
 					userInfo = new UserInfo();
-					userInfo.setU_adminId(rs.getString("u_adminId"));
-					userInfo.setU_car(rs.getShort("u_car"));
-					userInfo.setU_dong(rs.getString("u_dong"));
-					userInfo.setU_ho(Integer.parseInt(rs.getString("u_ho")));
-					userInfo.setU_hostId(rs.getString("u_hostId"));
 					userInfo.setU_id(rs.getString("u_id"));
 					userInfo.setU_name(rs.getString("u_name"));
-					userInfo.setU_passwd(rs.getString("u_passwd"));
-					userInfo.setU_presidentId(rs.getString("u_presidentId"));
+					userInfo.setU_dong(rs.getString("u_dong"));
+					userInfo.setU_ho(rs.getInt("u_ho"));
 					userInfo.setU_tel(rs.getString("u_tel"));
+					userInfo.setU_car(rs.getInt("u_car"));
+					System.out.println(userInfo.getU_car());
 					residentList.add(userInfo);
 				}while(rs.next());
 			}
@@ -189,6 +187,24 @@ public class LoginDAO {
 			close(pstmt);
 		}
 		return residentList;
+	}
+	public int deleteResident(String id) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		
+		int deleteCount = 0;
+		try {
+			pstmt = con.prepareStatement("DELETE FROM USERINFO WHERE u_id = ?");
+			pstmt.setString(1, id);
+			deleteCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		finally {
+			close(pstmt);
+		}
+		return deleteCount;
 	}
 	
 	

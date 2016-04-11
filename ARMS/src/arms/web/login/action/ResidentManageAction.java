@@ -20,7 +20,7 @@ public class ResidentManageAction implements Action {
 		ArrayList<UserInfo> residentList = residentListService.getResidentList();
 		ActionForward forward = new ActionForward();
 		request.setAttribute("residentList", residentList);
-		forward.setUrl("test.jsp");
+		forward.setUrl("residentManagement.jsp");
 		return forward;
 	}
 

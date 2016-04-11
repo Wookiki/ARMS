@@ -16,6 +16,8 @@ import arms.web.login.action.LogoutAction;
 import arms.web.login.action.ModifyPasswdAction;
 import arms.web.login.action.ModifyUserInfoAction;
 import arms.web.login.action.ResidentManageAction;
+import arms.web.login.action.DeleteResidnetAction;
+import arms.web.login.action.GrantHostIdAction;
 import arms.web.login.action.IdCheckAction;
 import arms.web.login.action.JoinAction;
 
@@ -98,6 +100,24 @@ public class LoginFrontController extends HttpServlet {
 		}
 		else if(command.equals("/residentMange.arms")){
 			action = new ResidentManageAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/deleteResident.arms")){
+			action = new DeleteResidnetAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/grantHostId.arms")){
+			action = new GrantHostIdAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

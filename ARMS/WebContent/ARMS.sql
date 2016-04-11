@@ -9,6 +9,7 @@ u_car		NUMBER	NULL,
 u_host		VARCHAR2(10)  NULL,
 u_adminId	VARCHAR2(10) NULL
 )
+SELECT u_id, u_name, u_dong, u_ho, u_tel, u_car FROM USERINFO
 ALTER TABLE USERINFO RENAME COLUMN u_host TO u_hostId;
 ALTER TABLE USERINFO ADD (u_presidentId VARCHAR(10));
 
