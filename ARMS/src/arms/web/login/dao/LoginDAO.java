@@ -3,6 +3,8 @@ package arms.web.login.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import static arms.db.jdbcUtil.*;
 
 import arms.web.login.vo.UserInfo;
@@ -48,12 +50,7 @@ public class LoginDAO {
 				loginInfo.setU_passwd(rs.getString("u_passwd"));
 				loginInfo.setU_presidentId(rs.getString("u_presidentId"));
 				loginInfo.setU_tel(rs.getString("u_tel"));
-				if(rs.getString("adminCheck").equals("A")){
-					loginInfo.setAdminCheck(true);
-				} 
-				else {
-					loginInfo.setAdminCheck(false);
-				}
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -158,6 +155,42 @@ public class LoginDAO {
 		}
 		return idCount;
 	}
+	public ArrayList<UserInfo> selectResidentList() {
+		// TODO Auto-generated method stub
+		ArrayList<UserInfo> residentList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = con.prepareStatement("SELECT u_id, u_name, u_dong, u_ho, u_tel, u_car FROM USERINFO");
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				UserInfo userInfo = null;
+				residentList = new ArrayList<UserInfo>();
+				do{
+					userInfo = new UserInfo();
+					userInfo.setU_adminId(rs.getString("u_adminId"));
+					userInfo.setU_car(rs.getShort("u_car"));
+					userInfo.setU_dong(rs.getString("u_dong"));
+					userInfo.setU_ho(Integer.parseInt(rs.getString("u_ho")));
+					userInfo.setU_hostId(rs.getString("u_hostId"));
+					userInfo.setU_id(rs.getString("u_id"));
+					userInfo.setU_name(rs.getString("u_name"));
+					userInfo.setU_passwd(rs.getString("u_passwd"));
+					userInfo.setU_presidentId(rs.getString("u_presidentId"));
+					userInfo.setU_tel(rs.getString("u_tel"));
+					residentList.add(userInfo);
+				}while(rs.next());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return residentList;
+	}
+	
 	
 	
 	

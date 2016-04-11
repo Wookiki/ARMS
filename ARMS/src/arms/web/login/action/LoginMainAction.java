@@ -18,20 +18,22 @@ public class LoginMainAction implements Action {
 		// TODO Auto-generated method stub
 		UserInfo loginUser = null;
 		String id = request.getParameter("id");
+		System.out.println(id);
 		String passwd = request.getParameter("passwd");
 		
 		
 		LoginMainService loginMainService = new LoginMainService();
 		loginUser = loginMainService.checkLogin(id, passwd);
-		
 		HttpSession session = request.getSession();
 		
 		ActionForward forward = new ActionForward();
+		
 		if(loginUser !=null){
 			session.setAttribute("loginUser", loginUser);
 			forward.setRedirect(true);
 			forward.setUrl("main.jsp");
-		}else{
+		}
+		else{
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");

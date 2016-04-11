@@ -15,6 +15,7 @@ import arms.web.login.action.LoginMainAction;
 import arms.web.login.action.LogoutAction;
 import arms.web.login.action.ModifyPasswdAction;
 import arms.web.login.action.ModifyUserInfoAction;
+import arms.web.login.action.ResidentManageAction;
 import arms.web.login.action.IdCheckAction;
 import arms.web.login.action.JoinAction;
 
@@ -35,13 +36,8 @@ public class LoginFrontController extends HttpServlet {
 	 */
     protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// 1. 요청파악
 		String requestURI = request.getRequestURI();
-		//요청 URL : http://localhost.8088/boardProject/boardWriteForm.bo
-		//requestURI : //boardProject/boardWriteform.bo
-		
 		String contextPath = request.getContextPath();
-		
 		String command = requestURI.substring(contextPath.length());
 		
 		Action action = null;
@@ -93,6 +89,15 @@ public class LoginFrontController extends HttpServlet {
 		}
 		else if(command.equals("/idCheck.arms")){
 			action = new IdCheckAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/residentMange.arms")){
+			action = new ResidentManageAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

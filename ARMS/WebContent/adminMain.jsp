@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>메인화면TEST</title>
+    <title>관리자 메인화면</title>
     <link href="MainBootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="MainBootstrap/css/heroic-features.css" rel="stylesheet">
 <style>
@@ -49,9 +49,8 @@
 						<a href="logout.arms">로그아웃</a>
                     		
                     </li>
-                    <li>
-                        <a href="#">채팅방</a>
-                    </li>
+                   
+                    
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -64,8 +63,8 @@
 
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
-            <h1>환영합니다.</h1>
-            <p>우리 아파트의 입주민 여러분 환영합니다. 입주민 간의 활발한 소통의 장이 되어봅시다.</p>
+            <h1>관리자 메인 페이지 입니다.</h1>
+            <p>각 게시판의 글과 내용을 작성, 수정, 삭제를 할 수 있습니다.</p>
         </header>
 
         <hr>
@@ -89,7 +88,7 @@
                         	
                         	
                         <p>
-                            <a href="noticeUserListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+                            <a href="noticeAdminListBoard.jsp" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>
@@ -101,7 +100,7 @@
                         <h3>아파트일정</h3>
 
                         <p>
-							<a href="calendarUserListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+							<a href="calendarAdminListBoard.jsp" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>
@@ -113,7 +112,7 @@
                         <h3>부대시설</h3>
                         
                         <p>
-                            <a href="facilityUserListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+                            <a href="facilityAdminListBoard.jsp" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>
@@ -125,23 +124,13 @@
                         <h3>봉사활동</h3>
 
                         <p>
-                             <a href="volunteerUserListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+                             <a href="volunteerAdminListBoard.jsp" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>
             </div>
             
-            <div class="col-md-3 col-sm-6 hero-feature">
-                <div class="thumbnail">
-                    <div class="caption">
-                        <h3>건의사항</h3>
-
-                        <p>
-                            <a href="suggestionUserListBoard.jsp" class="btn btn-primary">게시판이동</a> 
-                        </p>
-                    </div>
-                </div>
-            </div>
+            
 
         </div>
         <!-- /.row -->

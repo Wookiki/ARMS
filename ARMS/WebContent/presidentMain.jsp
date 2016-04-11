@@ -50,6 +50,10 @@
                     		
                     </li>
                     <li>
+						<a href="residentMange.arms">입주민목록</a>
+                    		
+                    </li>
+                    <li>
                         <a href="#">채팅방</a>
                     </li>
                 </ul>
