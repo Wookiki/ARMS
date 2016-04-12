@@ -10,11 +10,11 @@
 ArrayList<UserInfo>residentList = (ArrayList<UserInfo>)request.getAttribute("residentList");
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>입주민 목록</title>
 </head>
 <body>
-	<h2>입주민 목록 보기 <a href = "presidentMain.jsp"><input type = "button" value = "메인으로"></a></h2>
-	<%if(residentList.isEmpty()){
+	<h2>입주민 목록 보기 <a href = "main.jsp"><input type="button" value = "메인으로"/></a></h2>
+	<%if(residentList == null){
 		%>
 				<h2>등록된 입주민이 없습니다.</h2>
 				
@@ -44,8 +44,7 @@ ArrayList<UserInfo>residentList = (ArrayList<UserInfo>)request.getAttribute("res
 				<td><%=residentList.get(i).getU_tel() %></td>
 				<td><%=residentList.get(i).getU_car() %></td>
 				<td><a href = "deleteResident.arms?id=<%=residentList.get(i).getU_id() %>"><input type = "submit" value = "삭제"></a></td>
-				<td><a href = "grantHostId.arms?id=<%=residentList.get(i).getU_id() %>"><input type = "submit" value = "부여"></a></td>
-			</tr>	
+				<td><a href = "grantHostId.arms?hId=<%=residentList.get(i).getU_id() %>"><input type = "submit" value = "부여"></a></td>			</tr>	
 			
 			
 			<%} %>

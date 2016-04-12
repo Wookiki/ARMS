@@ -6,6 +6,6 @@
 		password = "ARMS"
 		driverClassName = "oracle.jdbc.driver.OracleDriver"
 		factory = "org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
-		url = "jdbc:oracle:thin:@203.250.33.221:1521:xe"
+		url = "jdbc:oracle:thin:@localhost:1521:xe"
 		maxActive = "500"/>
 </Context>   
