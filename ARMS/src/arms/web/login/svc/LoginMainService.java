@@ -17,7 +17,7 @@ public class LoginMainService {
  		Connection con = getConnection();
 		LoginDAO loginDAO = LoginDAO.getInstance();
 		loginDAO.setConnection(con);
-		loginUser = loginDAO.checkLogin(id, passwd);
+		loginUser = loginDAO.checkLogin(id, passwd);		
 		close(con);
 		return loginUser;
 	}

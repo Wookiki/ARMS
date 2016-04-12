@@ -29,7 +29,7 @@ public class LoginMainAction implements Action {
 		ActionForward forward = new ActionForward();
 		if(loginUser !=null){
 			session.setAttribute("loginUser", loginUser);
-			forward.setRedirect(true);
+			forward.setRedirect(true);			
 			forward.setUrl("main.jsp");
 		}else{
 			response.setContentType("text/html;charset=UTF-8");

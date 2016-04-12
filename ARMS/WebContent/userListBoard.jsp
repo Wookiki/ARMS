@@ -56,15 +56,18 @@ table {
 </style>
 </head>
 <%!
+	
 	//한 페이지당 출력될 글의 갯수
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");	
 %>
 
 <body>
-	<c:if test="${pageInfo.count != 0 }">
+	<c:if test="${pageInfo.count != 0}">
 	<section id = "listArea">
-		<h2>공지사항 게시판</h2>
-		<a href = "writeForm.jsp"> 글쓰기</a>
+	
+		<h2>${boardName}</h2>			
+		
+		<a href = "boardWriteForm.bo?bName=${bName}"> 글쓰기</a>
 		<table>
 			<tr id = "tr_title">
 			<td>글번호</td>
@@ -85,12 +88,12 @@ table {
 			</c:forEach>
 			re :
 			</c:if>
-			<a href = "boardContent.bo?num=${article.num }&pageNum=${pageInfo.currentPage}">${article.subject }</a>
+			<a href = "boardContentView.bo?bName=${bName}&num=${article.num }&pageNum=${pageInfo.currentPage}">${article.subject }</a>
 			</td>
-			<td class = "td_writer">${article.writer }</td>
+			<td class = "td_writer">${article.writeID }</td>
 			<td class = "td_regdate">
-			<fmt:formatDate var = "reg_date" value="${article.reg_date }" pattern = "yyyy.MM.dd"/>		
-			<c:out value = "${reg_date }"></c:out>
+			<fmt:formatDate var = "reg_date" value="${article.writeDate }" pattern = "yyyy.MM.dd"/>		
+			<c:out value = "${writeDate }"></c:out>
 			</td>	
 			<td class = "td_readcount">${article.readcount }</td>
 			</tr>	
@@ -109,13 +112,15 @@ table {
 			<c:if test="${pageInfo.endPage < pageInfo.pageCount }">			
 				<a href = "noticeBoardList.bo?pageNum=${pageInfo.startPage + 10 }">[다음]</a>
 			</c:if>
-		</section>
-	</section>
-	</c:if><br>
-	 <tr>
+			<tr>
+			<br>
         	<td colspan = "1" id = "commandCell">
         	<a href="main.jsp"><input type="button" value="메인으로" /></a></td>
 		</tr>
+		</section>		
+	</section>
+	</c:if><br>
+	 
 
 
 </body>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 게시판 내용 보기화면</title>
+<title>건의사항 게시판 내용 보기화면</title>
 <style>
 #contentArea{
 	width: 610px;
@@ -33,18 +33,21 @@
 </head>
 <body>
 	<section id = "contentArea">
-	<h2>공지사항 게시판</h2>
+	<h2>${boardName }</h2>
+	
 	<section id = "basicInfo">
 	제목 : ${conArticle.subject}
-	작성자 : ${conArticle.writer}
+	작성자 : ${conArticle.writeID}
 	조회수 : ${conArticle.readcount}
-	작성일 : ${conArticle.reg_date}
+	작성일 : ${conArticle.writeDate}
 	</section>
 	<section id = "contentInfo">
 	${conArticle.content }
 	</section>
 	<section id = "commandArea">
-	<input type = "button" value = "목록보기" onclick="location.href='boardList.bo'">
+	<input type = "button" value = "글 수정" onClick="location.href='boardUpdateForm.bo?bName=${bName}&num=${conArticle.num}&pageNum=${pageNum}'">
+	<input type = "button" value = "글 삭제" onClick="location.href='boardDeleteForm.bo?bName=${bName}&num=${conArticle.num }&pageNum=${pageNum}'">
+	<input type = "button" value = "목록보기" onclick="location.href='userListBoard.bo?bName=${bName}'">
 	</section>
 	</section>
 </body>

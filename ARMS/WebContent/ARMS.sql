@@ -134,3 +134,12 @@ fa_id				VARCHAR2(20)	NOT NULL,
 CONSTRAINT PK_fa_name	PRIMARY KEY(fa_name),
 CONSTRAINT FK_fa_id	FOREIGN KEY(fa_id) REFERENCES USERINFO(u_id)
 )
+ 
+
+
+select count(*) from noticeboard
+
+INSERT INTO SUGGESTIONBOARD(num,writerid,subject,writedate,readcount,content,ref,re_step,re_level) VALUES(seq_suggestion.nextval, 'a', 'test', SYSDATE, 0, 'test',1,0,0 );
+select * from user_sequences
+
+INSERT INTO suggestionboard (num,writerid,subject,passwd,writedate,ref,re_step,re_level,content) VALUES(76 , 'a' , 'test2' , 12 , SYSDATE , 52 , 0 , 0 , 'test2')

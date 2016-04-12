@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.Session;
 
 import arms.action.Action;
 import arms.vo.ActionForward;
@@ -11,12 +14,15 @@ import arms.web.board.svc.BoardListService;
 import arms.web.board.vo.Article;
 import arms.web.board.vo.PageInfo;
 
-public class NoticeBoardListAction implements Action {
+public class BoardListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int pageSize = 10;
+		String boardName="";
 		String pageNum = request.getParameter("pageNum");
+		String bName = request.getParameter("bName");
+		System.out.println(bName);
 		if(pageNum==null){
 			pageNum = "1";
 		}
@@ -40,9 +46,9 @@ public class NoticeBoardListAction implements Action {
 		ArrayList<Article> articleList = null;
 		//해당 페이지에 출력될 글의 정보를 저장할 컬렉션 객체
 		
-		count = boardListService.getArticleCount();
+		count = boardListService.getArticleCount(bName);
 		if(count>0){
-			articleList = boardListService.getArticleList(startRow,pageSize);
+			articleList = boardListService.getArticleList(startRow,pageSize,bName);
 		}
 		number = count - (currentPage - 1) * pageSize;
 		//전체 글의 개수 : 134
@@ -61,6 +67,22 @@ public class NoticeBoardListAction implements Action {
 		
 		if(endPage > pageCount) endPage = pageCount;
 		
+		if(bName.equals("notice")){
+			boardName = "공지사항 게시판";			
+		}
+		else if(bName.equals("facility")){
+			boardName = "부대시설 게시판";
+		}
+		else if(bName.equals("volunteer")){
+			boardName = "봉사활동 게시판";
+		}
+		else if(bName.equals("suggestion")){
+			boardName = "건의사항 게시판";
+		}
+		else if(bName.equals("calendar")){
+			boardName = "아파트일정 게시판";
+		}
+		HttpSession session = request.getSession();
 		request.setAttribute("articleList", articleList);
 		PageInfo pageInfo = new PageInfo();
 		pageInfo.setCount(count);
@@ -68,11 +90,13 @@ public class NoticeBoardListAction implements Action {
 		pageInfo.setEndPage(endPage);
 		pageInfo.setNumber(number);
 		pageInfo.setPageCount(pageCount);
-		pageInfo.setStartPage(startPage);
+		pageInfo.setStartPage(startPage);		
 		
 		request.setAttribute("pageInfo", pageInfo);
+		session.setAttribute("boardName", boardName);
+		session.setAttribute("bName", bName);
 		ActionForward forward = new ActionForward();
-		forward.setUrl("list.jsp");			
+		forward.setUrl("userListBoard.jsp");			
 		return forward;
 
 	}

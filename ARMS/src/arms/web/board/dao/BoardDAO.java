@@ -3,6 +3,7 @@ package arms.web.board.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import static arms.db.jdbcUtil.*;
@@ -24,10 +25,13 @@ public class BoardDAO {
 		
 	}
 	
-	public int insertArticle(Article article){		
-		PreparedStatement pstmt = null;
+	public int insertArticle(Article article, String bName){	
+		String boardName = bName + "board";
+		String seq = "seq_"+bName+".nextval";
+		Statement stmt = null;
 		ResultSet rs = null;
 		int insertCount = 0;
+		int seqNum = 0;
 		
 		//응답글 처리에 필요한 값들 얻어오기
 		int num = article.getNum();
@@ -41,11 +45,14 @@ public class BoardDAO {
 		String sql = "";
 		
 		try {
-						
+			
+			
+			
+			
 			//새로운 관련글 번호 구하기
 			//기존 값과 중복되지 않는 값으로
-			pstmt = con.prepareStatement("SELECT MAX(num) FROM board");
-			rs = pstmt.executeQuery();
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("SELECT MAX(num) FROM "+boardName+"");
 			
 			if(rs.next()){
 				//기존에 작성된 글이 있으면.
@@ -59,11 +66,9 @@ public class BoardDAO {
 			
 			if(num != 0){
 				//답글이면
-				sql = "UPDATE board SET re_step = re_step WHERE ref = ? AND re_step > ?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1,ref);
-				pstmt.setInt(2,re_step);
-				pstmt.executeUpdate();
+				sql = "UPDATE "+boardName+" SET re_step = re_step WHERE ref = ? AND re_step > ?";
+				stmt = con.createStatement();
+				stmt.executeUpdate(sql);
 				re_step = re_step +1;
 				re_level = re_level +1;					
 			}
@@ -74,21 +79,51 @@ public class BoardDAO {
 				re_level = 0;
 			}
 			
-			sql = "INSERT INTO board (num,writer,email,subject,passwd,reg_date"
-					+",ref,re_step,re_level,content)"
-					+" VALUES(board_seq.nextval,?,?,?,?,?,?,?,?,?)";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, article.getWriter());
-			pstmt.setString(2, article.getEmail());
-			pstmt.setString(3, article.getSubject());
-			pstmt.setString(4, article.getPasswd());
-			pstmt.setTimestamp(5, article.getReg_date());
-			pstmt.setInt(6, ref);
-			pstmt.setInt(7, re_step);
-			pstmt.setInt(8, re_level);
-			pstmt.setString(9, article.getContent());
+			//-----------------시퀀스 값 받아오기--------------------
+//			if(bName.equals("notice")){
+//				//sequence 처리하는 문장
+//				stmt = con.createStatement();
+//				rs = stmt.executeQuery("select seq_notice.nextval from "+boardName+"");
+//					if(rs.next()){
+//						seqNum=rs.getInt(1);
+//					}
+//				}
+//				else if (bName.equals("suggestion")) {
+//					stmt = con.createStatement();
+//					rs = stmt.executeQuery("select seq_suggestion.nextval from "+boardName+"");
+//						if(rs.next()){
+//							seqNum=rs.getInt(1);
+//						}
+//				}
+//				else if (bName.equals("facility")) {
+//					stmt = con.createStatement();
+//					rs = stmt.executeQuery("select seq_facility.nextval from "+boardName+"");
+//						if(rs.next()){
+//							seqNum=rs.getInt(1);
+//						}
+//				}
+//				else if (bName.equals("volunteer")) {
+//					stmt = con.createStatement();
+//					rs = stmt.executeQuery("select seq_volunteer.nextval from "+boardName+"");
+//						if(rs.next()){
+//							seqNum=rs.getInt(1);
+//						}
+//				}
+//				else if (bName.equals("calendar")) {
+//					stmt = con.createStatement();
+//					rs = stmt.executeQuery("select seq_calendar.nextval from "+boardName+"");
+//						if(rs.next()){
+//							seqNum=rs.getInt(1);
+//						}
+//				}
+			//-----------------시퀀스 값 받아오기--------------------
 			
-			insertCount = pstmt.executeUpdate();
+			sql = "INSERT INTO "+boardName+" (num,writerid,subject,passwd,writedate,ref,re_step,re_level,content,readcount)"
+					+" VALUES("+seq+" , '"+article.getWriteID()+"' , '"+article.getSubject()+"' , "+article.getPasswd()+" , SYSDATE , "+ref+" , "+re_step+" , "+re_level+" , '"+article.getContent()+"',0)";
+			stmt = con.createStatement();			
+			System.out.println(seqNum);
+			System.out.println(sql);
+			insertCount = stmt.executeUpdate(sql);
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -96,21 +131,26 @@ public class BoardDAO {
 		}
 		finally {
 			close(rs);
-			close(pstmt);			
+			close(stmt);			
 		}
 		return insertCount;
 	}
 	
+	//----------------------------------------글입력
 	
-	public int selectNoticeArticleCount(){
+	
+	public int selectNoticeArticleCount(String bName){
+		String boardName = bName + "board";
+		System.out.println(boardName);
 		int articleCount = 0;
-		PreparedStatement pstmt = null;
+		Statement stmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = con.prepareStatement("SELECT COUNT(*) FROM noticeboard");
-			rs = pstmt.executeQuery();
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("SELECT COUNT(*) FROM "+boardName+"");
 			if(rs.next()){
 				articleCount = rs.getInt(1);
+				System.out.println(articleCount);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -118,29 +158,25 @@ public class BoardDAO {
 		}
 		finally {
 			close(rs);
-			close(pstmt);
+			close(stmt);
 		}
 		return articleCount;
 	}
-	public ArrayList<Article> selectNoticeArticleList(int startRow,int pageSize){
+	public ArrayList<Article> selectNoticeArticleList(int startRow,int pageSize, String bName){
+		String boardName = bName + "board";
 		ArrayList<Article> articleList = null;
-		PreparedStatement pstmt = null;
+		Statement stmt = null;
 		ResultSet rs = null;
-		try {
-			con = getConnection();
-			pstmt = con.prepareStatement
-					("SELECT list2.* FROM (SELECT rownum r, list1.*"
-							+ "FROM(SELECT * FROM noticeboard ORDER BY ref DESC,re_step ASC) list1)"
-							+ "list2 WHERE r BETWEEN ? AND ?");
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, startRow+pageSize-1);
+		try {		
+			stmt = con.createStatement();			
 			//rownum : SELECT 구분 실행 시 각 레코드의 번호를 부여해 줌.
 			//해당 페이지에 출력될 글 레코드들을 가져옴
 			//메인 쿼리 안에 "()" 로 묶여서 독립적으로 실행되는 쿼리를 서브쿼리라고 한다.
 			//서브쿼리 중 FROM 절에 오는 서브쿼리를 인라인뷰라고 한다.
-			rs = pstmt.executeQuery();
+			rs = stmt.executeQuery("SELECT list2.* FROM (SELECT rownum r, list1.* FROM(SELECT * FROM "+boardName+" ORDER BY ref DESC ,re_step ASC) list1) list2 WHERE r BETWEEN "+startRow+" AND "+(startRow+pageSize-1)+"");
 			
 			if(rs.next()){
+				System.out.println(rs.getInt("re_level"));
 				Article article = null;
 				articleList = new ArrayList<Article>();
 				do{
@@ -154,7 +190,7 @@ public class BoardDAO {
 					article.setRef(rs.getInt("ref"));
 					article.setWriteDate(rs.getTimestamp("writedate"));
 					article.setSubject(rs.getString("subject"));
-					article.setWriteID(rs.getString("writeid"));
+					article.setWriteID(rs.getString("writerid"));
 					
 					articleList.add(article); 
 					
@@ -167,46 +203,43 @@ public class BoardDAO {
 		}
 		finally {
 			close(rs);
-			close(pstmt);
+			close(stmt);
 		}
 		return articleList;
 	}
 	
-	public Article selectArticle(int board_Num){
+	public Article selectArticle(int board_Num, String bName){
+		String boardName = bName + "board";
 		Article article = null;
-		PreparedStatement pstmt = null;
+		Statement stmt = null;
 		ResultSet rs = null;
 		
 		try {
-			pstmt = con.prepareStatement
-					("UPDATE board SET readcount = readcount+1 WHERE num = ?");	
-			pstmt.setInt(1, board_Num);
-			int updateCount = pstmt.executeUpdate();
+			stmt = con.createStatement();	
+			int updateCount = stmt.executeUpdate("UPDATE "+boardName+" SET readcount = readcount+1 WHERE num = "+board_Num+"");
 			if(updateCount>0){
 				commit(con);
 			}
 			else{
 				rollback(con);
 			}
-			pstmt = con.prepareStatement
-					("SELECT * FROM board WHERE num = ?");
-			pstmt.setInt(1, board_Num);
-			rs = pstmt.executeQuery();
+			stmt = con.createStatement
+					();
+			rs = stmt.executeQuery("SELECT * FROM "+boardName+" WHERE num = "+board_Num+"");
 			
 			if(rs.next()){
 				
 					article = new Article();
 					article.setNum(rs.getInt("num"));
 					article.setContent(rs.getString("content"));
-					article.setEmail(rs.getString("email"));
-					article.setPasswd(rs.getString("passwd"));
+					article.setPasswd(rs.getInt("passwd"));
 					article.setRe_level(rs.getInt("re_level"));
 					article.setRe_step(rs.getInt("re_step"));
 					article.setReadcount(rs.getInt("readcount"));
 					article.setRef(rs.getInt("ref"));
-					article.setReg_date(rs.getTimestamp("reg_date"));
+					article.setWriteDate(rs.getTimestamp("writedate"));
 					article.setSubject(rs.getString("subject"));
-					article.setWriter(rs.getString("writer"));		
+					article.setWriteID(rs.getString("writerid"));		
 					
 				}		
 			
@@ -216,38 +249,36 @@ public class BoardDAO {
 		}
 		finally {
 			close(rs);
-			close(pstmt);
+			close(stmt);
 		}
 		
 		return article;
 		
 	}
 	
-	public Article selectOldArticle(int num){
+	public Article selectOldArticle(int num, String bName){		
+		String boardName = bName + "board";
 		Article article = null;
-		PreparedStatement pstmt = null;
+		Statement stmt = null;
 		ResultSet rs = null;
 		
 		try {
-			pstmt = con.prepareStatement
-					("SELECT * FROM board WHERE num = ?");
-			pstmt.setInt(1, num);
-			rs = pstmt.executeQuery();
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM "+boardName+" WHERE num = ?");
 			
 			if(rs.next()){
 				
 					article = new Article();
 					article.setNum(rs.getInt("num"));
 					article.setContent(rs.getString("content"));
-					article.setEmail(rs.getString("email"));
-					article.setPasswd(rs.getString("passwd"));
+					article.setPasswd(rs.getInt("passwd"));
 					article.setRe_level(rs.getInt("re_level"));
 					article.setRe_step(rs.getInt("re_step"));
 					article.setReadcount(rs.getInt("readcount"));
 					article.setRef(rs.getInt("ref"));
-					article.setReg_date(rs.getTimestamp("reg_date"));
+					article.setWriteDate(rs.getTimestamp("writedate"));
 					article.setSubject(rs.getString("subject"));
-					article.setWriter(rs.getString("writer"));		
+					article.setWriteID(rs.getString("writerid"));		
 					
 				}		
 			
@@ -257,7 +288,7 @@ public class BoardDAO {
 		}
 		finally {
 			close(rs);
-			close(pstmt);
+			close(stmt);
 		}
 		
 		return article;	
