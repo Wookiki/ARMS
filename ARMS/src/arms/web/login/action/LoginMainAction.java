@@ -2,9 +2,11 @@ package arms.web.login.action;
 
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 import arms.action.Action;
 import arms.vo.ActionForward;
@@ -24,12 +26,12 @@ public class LoginMainAction implements Action {
 		LoginMainService loginMainService = new LoginMainService();
 		loginUser = loginMainService.checkLogin(id, passwd);
 		
-		HttpSession session = request.getSession();
+		ServletContext ctx = request.getServletContext();
 		
 		ActionForward forward = new ActionForward();
 		if(loginUser !=null){
-			session.setAttribute("loginUser", loginUser);
-			forward.setRedirect(true);			
+			ctx.setAttribute("loginUser", loginUser);
+			forward.setRedirect(true);
 			forward.setUrl("main.jsp");
 		}else{
 			response.setContentType("text/html;charset=UTF-8");

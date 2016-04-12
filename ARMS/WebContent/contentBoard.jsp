@@ -33,7 +33,7 @@
 </head>
 <body>
 	<section id = "contentArea">
-	<h2>${boardName }</h2>
+	<h2>${boardName}</h2>
 	
 	<section id = "basicInfo">
 	제목 : ${conArticle.subject}
@@ -42,7 +42,7 @@
 	작성일 : ${conArticle.writeDate}
 	</section>
 	<section id = "contentInfo">
-	${conArticle.content }
+	${conArticle.content}
 	</section>
 	<section id = "commandArea">
 	<input type = "button" value = "글 수정" onClick="location.href='boardUpdateForm.bo?bName=${bName}&num=${conArticle.num}&pageNum=${pageNum}'">

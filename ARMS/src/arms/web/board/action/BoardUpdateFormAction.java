@@ -25,6 +25,7 @@ public class BoardUpdateFormAction implements Action {
 				request.setAttribute("article", article);
 				request.setAttribute("pageNum", pageNum);
 				ActionForward forward = new ActionForward();
+				System.out.println(user);
 				
 				if(article.getWriteID().equals(user)){
 				forward.setUrl("updateForm.jsp");

@@ -264,7 +264,7 @@ public class BoardDAO {
 		
 		try {
 			stmt = con.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM "+boardName+" WHERE num = ?");
+			rs = stmt.executeQuery("SELECT * FROM "+boardName+" WHERE num = "+num+"");
 			
 			if(rs.next()){
 				

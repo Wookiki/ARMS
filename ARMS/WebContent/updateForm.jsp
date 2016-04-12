@@ -42,9 +42,9 @@
 	<section id="updateFormArea">
 		<h2>글쓰기</h2>
 		<form action = "boardUpdatePro.bo" method = "POST">
-		<input type = "hidden" name = "num" value = "${article.num }"/>		
-		<input type = "hidden" name = "pageNum" value = "${pageNum }"/>
-		<input type = "hidden" name = "user" value = "${loginUser.getU_id()}"/>
+		<input type = "hidden" name = "num" value="${article.num }"/>		
+		<input type = "hidden" name = "pageNum" value="${pageNum }"/>
+		<input type = "hidden" name = "user" value="${loginUser.u_id}"/>
 		<table>
 		<tr>
 		<td class = "td_left">
