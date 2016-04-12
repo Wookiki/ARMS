@@ -134,6 +134,7 @@ public class LoginDAO {
 		}
 		return updateCount;
 	}
+	
 	public int selectIdCount(String id) {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt = null;
@@ -161,7 +162,7 @@ public class LoginDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = con.prepareStatement("SELECT * FROM USERINFO WHERE u_adminId is null ORDER BY u_dong ");
+			pstmt = con.prepareStatement("SELECT * FROM USERINFO WHERE u_adminId is null ORDER BY u_dong, u_ho, u_hostId ");
 			//_id, u_name, u_dong, u_ho, u_tel, u_car
 			rs = pstmt.executeQuery();
 			if(rs.next()){
@@ -175,7 +176,7 @@ public class LoginDAO {
 					userInfo.setU_ho(rs.getInt("u_ho"));
 					userInfo.setU_tel(rs.getString("u_tel"));
 					userInfo.setU_car(rs.getInt("u_car"));
-					System.out.println(userInfo.getU_car());
+					userInfo.setU_hostId(rs.getString("u_hostId"));
 					residentList.add(userInfo);
 				}while(rs.next());
 			}
@@ -205,6 +206,39 @@ public class LoginDAO {
 			close(pstmt);
 		}
 		return deleteCount;
+	}
+	public int selectUpdateHost(UserInfo userInfo) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int updateCount =0;
+		try {
+			pstmt = con.prepareStatement("UPDATE USERINFO SET u_hostId = ? WHERE u_id = ?");
+			pstmt.setString(1, userInfo.getU_id());
+			pstmt.setString(2, userInfo.getU_id());
+			updateCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return updateCount;
+	}
+	public int selectDeleteeHost(UserInfo userInfo) {
+		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		int updateCount =0;
+		try {
+			pstmt = con.prepareStatement("UPDATE USERINFO SET u_hostId = null WHERE u_id = ?");
+			pstmt.setString(1, userInfo.getU_id());
+			updateCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return updateCount;
 	}
 	
 	
