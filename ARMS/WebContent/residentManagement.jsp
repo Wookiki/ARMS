@@ -18,6 +18,17 @@ ArrayList<UserInfo>residentList = (ArrayList<UserInfo>)request.getAttribute("res
 	 <link href="MainBootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="MainBootstrap/css/heroic-features.css" rel="stylesheet">
 
+	<style type="text/css">
+		#residentTable{
+		 margin-left: 100px; 
+		 text-align: center;
+		}
+		h2{
+		 width: 300px;
+		 margin-left: 100px;
+		}
+	</style>
+
 
 </head>
 <body>
@@ -65,7 +76,7 @@ ArrayList<UserInfo>residentList = (ArrayList<UserInfo>)request.getAttribute("res
 	<%}
 	else{
 	%>	
-		<table width="800" border="1" cellspacing = "0">
+		<table id = "residentTable" width="800" border="1" cellspacing = "0">
 			<tr>
 			
 			<td>ID</td>

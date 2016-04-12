@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>입주민메인화면</title>
+    <title>반상회장 메인화면</title>
     <link href="MainBootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="MainBootstrap/css/heroic-features.css" rel="stylesheet">
 <style>
@@ -37,7 +37,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">ARMS</a>
+                <a class="navbar-brand" href="hostMain.jsp">ARMS</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -49,6 +49,7 @@
 						<a href="logout.arms">로그아웃</a>
                     		
                     </li>
+                    
                     <li>
                         <a href="#">채팅방</a>
                     </li>
@@ -65,7 +66,7 @@
         <!-- Jumbotron Header -->
         <header class="jumbotron hero-spacer">
             <h1>환영합니다.</h1>
-            <p>우리 아파트의 입주민 여러분 환영합니다. 입주민 간의 활발한 소통의 장이 되어봅시다.</p>
+            <p>우리 동의 반상회장은 당신 입니다. 채팅방을 통해 입주민과 소통하세요.</p>
         </header>
 
         <hr>

@@ -18,7 +18,6 @@ public class LoginMainAction implements Action {
 		// TODO Auto-generated method stub
 		UserInfo loginUser = null;
 		String id = request.getParameter("id");
-		System.out.println(id);
 		String passwd = request.getParameter("passwd");
 		
 		
@@ -31,7 +30,20 @@ public class LoginMainAction implements Action {
 		if(loginUser !=null){
 			session.setAttribute("loginUser", loginUser);
 			forward.setRedirect(true);
+			
+			System.out.println(id);
+			System.out.println(loginUser.getU_adminId());
+
+			if(id.equals(loginUser.getU_adminId())){
+				forward.setUrl("adminMain.jsp");
+			}else if(id.equals(loginUser.getU_presidentId())){
+				forward.setUrl("presidentMain.jsp");
+			}else if(id.equals(loginUser.getU_hostId())){
+				forward.setUrl("hostMain.jsp");
+			}
+			else{
 			forward.setUrl("main.jsp");
+			}
 		}
 		else{
 			response.setContentType("text/html;charset=UTF-8");
