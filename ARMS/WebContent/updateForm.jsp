@@ -41,45 +41,28 @@
 <body>
 	<section id="updateFormArea">
 		<h2>글쓰기</h2>
-		<form action = "boardUpdatePro.bo" method = "POST">
+		<form action = "boardUpdatePro.bo?bName=${bName}" method = "POST">
 		<input type = "hidden" name = "num" value="${article.num }"/>		
 		<input type = "hidden" name = "pageNum" value="${pageNum }"/>
 		<input type = "hidden" name = "user" value="${loginUser.u_id}"/>
 		<table>
-		<tr>
-		<td class = "td_left">
-		<label for = "writer">작성자 : </label>
-		</td>
-		<td class = "td_right">		
-		<input type = "text" name = "writer" id = "writer"
-		value = "${article.writeID}"
-		required = "required">
-		</td>		
-		</tr>
+		
 		<tr>
 		<td class = "td_left">
 		<label for = "subject">제목 : </label>
 		</td>
 		<td class = "td_right">			
 		<input type = "text" name = "subject" id = "subject"
-		value = "${article.subject }"	>
+		value = "${article.subject}">
 		</td>		
-		</tr>
-		<tr>
-		<td class = "td_left">
-		<label for = "email">Email : </label>
-		</td>
-		<td class = "td_right">		
-		<input type = "email" name = "email" id = "email"
-		value = "${article.email }" >
-		</td>		
-		</tr>
+		</tr>				
+	
 		<tr>
 		<td class = "td_left">
 		<label for = "content">글내용 : </label>
 		</td>
 		<td class = "td_right">		
-		<textarea id = "content" name = "content" rows = "13" cols = "40">${article.content }</textarea>
+		<textarea id = "content" name = "content" rows = "13" cols = "40">${article.content}</textarea>
 	
 		</td>		
 		</tr>

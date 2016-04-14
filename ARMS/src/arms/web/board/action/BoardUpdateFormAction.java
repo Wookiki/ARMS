@@ -9,21 +9,25 @@ import arms.action.Action;
 import arms.vo.ActionForward;
 import arms.web.board.svc.BoardUpdateFormService;
 import arms.web.board.vo.Article;
+import arms.web.login.vo.UserInfo;
 
 public class BoardUpdateFormAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
+				
 				String bName = request.getParameter("bName");
 				int num = Integer.parseInt(request.getParameter("num"));
 				String pageNum = request.getParameter("pageNum");
 				String user = request.getParameter("user");
+				
 				BoardUpdateFormService boardUpdateFormService = new BoardUpdateFormService();
 				
 				Article article = boardUpdateFormService.getArticle(num,bName);		
 				request.setAttribute("article", article);
 				request.setAttribute("pageNum", pageNum);
+				
 				ActionForward forward = new ActionForward();
 				System.out.println(user);
 				

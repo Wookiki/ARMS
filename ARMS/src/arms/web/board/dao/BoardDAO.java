@@ -295,36 +295,25 @@ public class BoardDAO {
 
 	}
 	
-	public int updateArticle(Article article){
-		PreparedStatement pstmt = null;
+	public int updateArticle(Article article, String bName){
+		String boardName = bName + "board";
+		Statement stmt = null;
 		ResultSet rs = null;
 		
-		String dbPasswd = "";
+		int dbPasswd = 0;
 		String sql ="";
 		int updateCount = 0;
 		try {
-			pstmt = con.prepareStatement("SELECT passwd FROM board WHERE num = ?");
-			pstmt.setInt(1,  article.getNum());
-			rs = pstmt.executeQuery();
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("SELECT passwd FROM "+boardName+" WHERE num = "+article.getNum()+"");
 			if(rs.next()){
-				dbPasswd = rs.getString("passwd");
-				if(dbPasswd.equals(article.getPasswd())){
-					sql = "UPDATE board SET writer=?,email=?,subject=?,content=? WHERE num = ?";
-					pstmt = con.prepareStatement(sql);
-					pstmt.setString(1, article.getWriter());
-					pstmt.setString(2, article.getEmail());
-					pstmt.setString(3, article.getSubject());
-					pstmt.setString(4, article.getContent());
-					pstmt.setInt(5, article.getNum());
+				dbPasswd = rs.getInt("passwd");
+				if(dbPasswd == article.getPasswd()){
+					sql = "UPDATE "+boardName+" SET subject='"+article.getSubject()+"',content='"+article.getContent()+"' WHERE num = "+article.getNum()+"";
+					stmt = con.createStatement();					
+					updateCount = stmt.executeUpdate(sql);
 					
-					updateCount = pstmt.executeUpdate();
 					
-					if(updateCount >0) {
-						commit(con);
-					}
-					else{
-						rollback(con);
-					}
 				}
 			}
 		} catch (Exception e) {
@@ -333,37 +322,32 @@ public class BoardDAO {
 		}
 		finally {
 			close(rs);
-			close(pstmt);
+			close(stmt);
 		}		
 		return updateCount;
 	}
 	
-	public int deleteArticle(int num , String passwd){
-		PreparedStatement pstmt = null;
+	public int deleteArticle(int num , int passwd, String bName){
+		String boardName = bName + "board";
+		System.out.println(boardName);
+		Statement stmt = null;
 		ResultSet rs = null;
+		System.out.println(num);
 		
-		String dbPasswd = "";
+		int dbPasswd = 0;
 		String sql ="";
 		int deleteCount = 0;
 		try {
-			pstmt = con.prepareStatement("SELECT passwd FROM board WHERE num = ?");
-			pstmt.setInt(1,  num);
-			rs = pstmt.executeQuery();
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("SELECT passwd FROM "+boardName+" WHERE num = "+num+"");
 			if(rs.next()){
-				dbPasswd = rs.getString("passwd");
-				if(dbPasswd.equals(passwd)){
-					sql = "DELETE board WHERE num = ?";
-					pstmt = con.prepareStatement(sql);
-					pstmt.setInt(1, num);		
+				dbPasswd = rs.getInt("passwd");
+				if(dbPasswd == passwd){
+					sql = "DELETE FROM "+boardName+" WHERE num = "+num+"";
+					stmt = con.createStatement();
+					deleteCount = stmt.executeUpdate(sql);
 					
-					deleteCount = pstmt.executeUpdate();
 					
-					if(deleteCount >0) {
-						commit(con);
-					}
-					else{
-						rollback(con);
-					}
 				}
 			}
 		} catch (Exception e) {
@@ -372,7 +356,7 @@ public class BoardDAO {
 		}
 		finally {
 			close(rs);
-			close(pstmt);
+			close(stmt);
 		}		
 		return deleteCount;
 	}

@@ -10,11 +10,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="bootstrap/favicon.ico">
-
+\
     <title>로그인화면</title>
 
     <link href="bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="bootstrap/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="bootstrap/ie10-viewport-bu\g-workaround.css" rel="stylesheet">
     <link href="bootstrap/signin.css" rel="stylesheet">
     <script src="bootstrap/ie-emulation-modes-warning.js"></script>
     

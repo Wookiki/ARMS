@@ -31,8 +31,8 @@
 }
 </style>
 </head>
-<body>
-	<section id = "contentArea">
+<body> 
+<section id = "contentArea">
 	<h2>${boardName}</h2>
 	
 	<section id = "basicInfo">
@@ -45,8 +45,8 @@
 	${conArticle.content}
 	</section>
 	<section id = "commandArea">
-	<input type = "button" value = "글 수정" onClick="location.href='boardUpdateForm.bo?bName=${bName}&num=${conArticle.num}&pageNum=${pageNum}'">
-	<input type = "button" value = "글 삭제" onClick="location.href='boardDeleteForm.bo?bName=${bName}&num=${conArticle.num }&pageNum=${pageNum}'">
+	<input type = "button" value = "글 수정" onClick="location.href='boardUpdateForm.bo?user=${loginUser.u_id}&bName=${bName}&num=${conArticle.num}&pageNum=${pageNum}'">
+	<input type = "button" value = "글 삭제" onClick="location.href='boardDeleteForm.bo?bName=${bName}&num=${conArticle.num}&pageNum=${pageNum}'">
 	<input type = "button" value = "목록보기" onclick="location.href='userListBoard.bo?bName=${bName}'">
 	</section>
 	</section>

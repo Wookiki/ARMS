@@ -12,8 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import arms.action.Action;
 import arms.vo.ActionForward;
 import arms.web.board.action.BoardContentViewAction;
+import arms.web.board.action.BoardDeleteFormAction;
+import arms.web.board.action.BoardDeleteProAction;
 import arms.web.board.action.BoardListAction;
 import arms.web.board.action.BoardUpdateFormAction;
+import arms.web.board.action.BoardUpdateProAction;
 import arms.web.board.action.BoardWriteFormAction;
 import arms.web.board.action.BoardWriteProAction;
 
@@ -88,6 +91,33 @@ public class BoardFrontController extends HttpServlet {
 		}
 		else if(command.equals("/boardUpdateForm.bo")){
 			action = new BoardUpdateFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/boardUpdatePro.bo")){
+			action = new BoardUpdateProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/boardDeleteForm.bo")){
+			action = new BoardDeleteFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/boardDeletePro.bo")){
+			action = new BoardDeleteProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

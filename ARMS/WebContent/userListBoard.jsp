@@ -103,14 +103,14 @@ table {
 		
 		<section id = "pageArea">
 		<c:if test="${pageInfo.startPage > 10}">			
-				<a href = "noticeBoardList.bo?pageNum=${pageInfo.startPage - 10 }">[이전]</a>
+				<a href = "userListBoard.bo?bName=${bName}&pageNum=${pageInfo.startPage - 10 }">[이전]</a>
 		</c:if>
 			
 			<c:forEach var = "i" begin = "${pageInfo.startPage }" end = "${pageInfo.endPage}" >
-				<a href = "noticeBoardList.bo?pageNum=${i }">[${i }]</a>
+				<a href = "userListBoard.bo?bName=${bName}&pageNum=${i }">[${i }]</a>
 			</c:forEach>
 			<c:if test="${pageInfo.endPage < pageInfo.pageCount }">			
-				<a href = "noticeBoardList.bo?pageNum=${pageInfo.startPage + 10 }">[다음]</a>
+				<a href = "userListBoard.bo?bName=${bName}&pageNum=${pageInfo.startPage + 10 }">[다음]</a>
 			</c:if>
 			<tr>
 			<br>
