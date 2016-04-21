@@ -30,9 +30,6 @@ public class LoginMainAction implements Action {
 		if(loginUser !=null){
 			session.setAttribute("loginUser", loginUser);
 			forward.setRedirect(true);
-			
-			System.out.println(id);
-			System.out.println(loginUser.getU_adminId());
 
 			if(id.equals(loginUser.getU_adminId())){
 				forward.setUrl("adminMain.jsp");
@@ -42,7 +39,7 @@ public class LoginMainAction implements Action {
 				forward.setUrl("hostMain.jsp");
 			}
 			else{
-			forward.setUrl("main.jsp");
+			forward.setUrl("ResidentMain.jsp");
 			}
 		}
 		else{

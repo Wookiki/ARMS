@@ -51,7 +51,7 @@
                     </li>
                     
                     <li>
-                        <a href="#">채팅방</a>
+                        <a href="chatRoom.jsp">채팅방</a>
                     </li>
                 </ul>
             </div>
@@ -90,7 +90,7 @@
                         	
                         	
                         <p>
-                            <a href="noticeUserListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+                            <a href="userListBoard.bo?bName=notice" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                         <h3>아파트일정</h3>
 
                         <p>
-							<a href="calendarUserListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+							<a href="userListBoard.bo?bName=calendar" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                         <h3>부대시설</h3>
                         
                         <p>
-                            <a href="facilityUserListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+                            <a href="userListBoard.bo?bName=facility" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                         <h3>봉사활동</h3>
 
                         <p>
-                             <a href="volunteerUserListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+                             <a href="userListBoard.bo?bName=volunteer" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                         <h3>건의사항</h3>
 
                         <p>
-                            <a href="suggestionUserListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+                            <a href="userListBoard.bo?bName=suggestion" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>

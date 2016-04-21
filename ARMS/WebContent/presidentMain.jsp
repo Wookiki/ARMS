@@ -19,7 +19,10 @@
 		width: 50px;
 		height: 50px;
 	}
-
+	#icon{
+		width : 60px; 
+		height:60 px;
+	}
 </style>
 
 </head>
@@ -37,7 +40,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">ARMS</a>
+                <a class="navbar-brand" href="presidentMain.jsp">ARMS</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -54,7 +57,7 @@
                     		
                     </li>
                     <li>
-                        <a href="#">채팅방</a>
+                        <a href="chatRoom.jsp">채팅방</a>
                     </li>
                 </ul>
             </div>
@@ -77,7 +80,7 @@
         <!-- Title -->
         <div class="row">
             <div class="col-lg-12">
-                <h3>게시판</h3>
+                <h3><img id = "icon" src="Icon/list.svg" > <strong>게시판</strong></h3>
             </div>
         </div>
         <!-- /.row -->
@@ -93,7 +96,7 @@
                         	
                         	
                         <p>
-                            <a href="noticeUserListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+                            <a href="userListBoard.bo?bName=notice" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>
@@ -105,7 +108,7 @@
                         <h3>아파트일정</h3>
 
                         <p>
-							<a href="calendarUserListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+							<a href="userListBoard.bo?bName=calendar" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>
@@ -117,7 +120,7 @@
                         <h3>부대시설</h3>
                         
                         <p>
-                            <a href="facilityUserListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+                            <a href="userListBoard.bo?bName=facility" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>
@@ -129,7 +132,7 @@
                         <h3>봉사활동</h3>
 
                         <p>
-                             <a href="volunteerUserListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+                             <a href="userListBoard.bo?bName=volunteer" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>
@@ -141,7 +144,7 @@
                         <h3>건의사항</h3>
 
                         <p>
-                            <a href="suggestionUserListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+                            <a href="userListBoard.bo?bName=suggestion" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>

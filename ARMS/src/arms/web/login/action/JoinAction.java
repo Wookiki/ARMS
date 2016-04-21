@@ -31,8 +31,14 @@ public class JoinAction implements Action {
 		ActionForward forward = new ActionForward();
 		
 		if(joinSuccess){
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('회원가입성공')");
+			out.println("history.back()");
+			out.println("</script>");
 			forward.setRedirect(true);
-			forward.setUrl("loginMain.jsp");
+			forward.setUrl("index.jsp");
 		}else{
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();

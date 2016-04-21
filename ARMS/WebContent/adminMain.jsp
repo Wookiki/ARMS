@@ -19,7 +19,11 @@
 		width: 50px;
 		height: 50px;
 	}
-
+	#icon{
+		width : 60px; 
+		height:60 px;
+	}
+	
 </style>
 
 </head>
@@ -72,7 +76,7 @@
         <!-- Title -->
         <div class="row">
             <div class="col-lg-12">
-                <h3>게시판</h3>
+                <h3><img id = "icon" src="Icon/list.svg" > <strong>게시판</strong></h3>
             </div>
         </div>
         <!-- /.row -->
@@ -82,13 +86,14 @@
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    
+                   
                     <div class="caption">
+                    
                         <h3>공지사항</h3>
                         	
                         	
                         <p>
-                            <a href="noticeAdminListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+                            <a href="userListBoard.bo?bName=notice" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>
@@ -100,7 +105,7 @@
                         <h3>아파트일정</h3>
 
                         <p>
-							<a href="calendarAdminListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+							<a href="userListBoard.bo?bName=calendar" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>
@@ -112,7 +117,7 @@
                         <h3>부대시설</h3>
                         
                         <p>
-                            <a href="facilityAdminListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+                            <a href="userListBoard.bo?bName=facility" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>
@@ -124,12 +129,23 @@
                         <h3>봉사활동</h3>
 
                         <p>
-                             <a href="volunteerAdminListBoard.jsp" class="btn btn-primary">게시판이동</a> 
+                             <a href="userListBoard.bo?bName=volunteer" class="btn btn-primary">게시판이동</a> 
                         </p>
                     </div>
                 </div>
             </div>
             
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>건의사항</h3>
+
+                        <p>
+                            <a href="userListBoard.bo?bName=suggestion" class="btn btn-primary">게시판이동</a> 
+                        </p>
+                    </div>
+                </div>
+            </div>
             
 
         </div>
