@@ -13,6 +13,7 @@ u_adminId	VARCHAR2(10) NULL
 SELECT u_id, u_name, u_dong, u_ho, u_tel, u_car FROM USERINFO
 ALTER TABLE USERINFO RENAME COLUMN u_host TO u_hostId;
 ALTER TABLE USERINFO ADD (u_presidentId VARCHAR(10));
+ALTER TABLE USERINFO ADD CONSTRAINT uk_USERINFO_u_name UNIQUE(u_name)
 
 INSERT INTO USERINFO VALUES ('Wookiki', '1111', '±è¿µ¿í', '¾øÀ½', 0, '010-2081-1597', 1, null, 'Wookiki', null)
 INSERT INTO USERINFO VALUES ('Rock', '1111', '¹ÚÈ«¶ô', '101', 101, '010-4558-9543', 5, null, 'Wookiki', 'Rock' )
@@ -132,12 +133,17 @@ drop sequence seq_sug_num;
 
 
 create table CHATROOM(
-ch_host		VARCHAR2(20) NOT NULL,
-ch_topic		VARCHAR2(100) NULL,
-ch_participant	VARCHAR2(10) NOT NULL,
-CONSTRAINT PK_ch_host	PRIMARY KEY(ch_host),
-CONSTRAINT FK_ch_participant	FOREIGN KEY(ch_participant) REFERENCES USERINFO(u_id)
+ch_num		NUMBER PRIMARY KEY,
+ch_memberId VARCHAR2(20) NOT NULL,
+ch_memberName	VARCHAR2(20) NOT NULL,
+ch_message		VARCHAR2(200) NULL,
+CONSTRAINT FK_ch_memberId	FOREIGN KEY(ch_memberId) REFERENCES USERINFO(u_id),
+CONSTRAINT FK_ch_memberName	FOREIGN KEY(ch_memberName) REFERENCES USERINFO(u_name)
 )
+
+CREATE SEQUENCE seq_ch_num;
+
+DROP TABLE CHATROOM
 
 create table FACILITY(
 fa_name		VARCHAR2(10),
